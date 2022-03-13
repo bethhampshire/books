@@ -22,8 +22,4 @@
             </ContentControl.Resources>
         </ContentControl>
     </Border>
-    <Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.Close"
-                        Executed="CloseCommandHandler"/>
-    </Window.CommandBindings>
 </Window>
