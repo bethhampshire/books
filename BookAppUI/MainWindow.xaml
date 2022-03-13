@@ -10,7 +10,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None">
-    <Border Background="Aquamarine" CornerRadius="15">
+    <Border Background="#EDF2F4" CornerRadius="15" BorderThickness="3" BorderBrush="#2B2D42">
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
@@ -22,4 +22,8 @@
             </ContentControl.Resources>
         </ContentControl>
     </Border>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
 </Window>
