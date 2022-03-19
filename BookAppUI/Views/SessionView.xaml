@@ -140,7 +140,7 @@
             <Button Grid.Column="1"
                     Grid.Row="4"
                     Content="End session"
-                    Command="{Binding NavigateHomeCommand}"
+                    Command="{Binding NavigateEndSessionCommand}"
                     Margin="15 0 15 0"
                     BorderThickness="0">
             </Button>
