@@ -21,35 +21,6 @@
                 <ColumnDefinition Width="600"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <Border Background="#2B2D42"
-                    Grid.Row="0"
-                    VerticalAlignment="Center"
-                    Height="30">
-                <TextBlock Grid.Row="0" 
-                       Grid.Column="0" 
-                       Foreground="#EDF2F4"
-                       Margin="30 0 0 0"
-                       FontSize="18">
-                BookApp
-                </TextBlock>
-            </Border>
-            <Border Background="#2B2D42"
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    VerticalAlignment="Center"
-                    Height="30">
-                <Button Grid.Row="0" 
-                    Grid.Column="1"
-                    Width="18"
-                    FontSize="20"
-                    Background="Transparent"
-                    Foreground="#D90429"
-                    BorderThickness="0"
-                    Content="&#x2718;"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 15 0" >
-                </Button>
-            </Border>
             <StackPanel Grid.Row="1"
                         Grid.Column="0"
                         Margin="10 10 20 10"

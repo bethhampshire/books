@@ -6,20 +6,56 @@
         xmlns:viewmodels="clr-namespace:BookAppUI.ViewModels"
         xmlns:views="clr-namespace:BookAppUI.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="600" Width="1000"
         Background="Transparent"
         AllowsTransparency="True"
-        WindowStyle="None">
-    <Border Background="#EDF2F4" CornerRadius="15" BorderThickness="3" BorderBrush="#2B2D42">
-        <ContentControl Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-                    <views:HomeView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:SessionViewModel}">
-                    <views:SessionView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
-    </Border>
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                MouseDown="Border_MouseDown">
+            <Border Background="#2B2D42"
+                    Grid.Row="0"
+                    VerticalAlignment="Center"
+                    Height="30">
+                <StackPanel>
+                    <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       Foreground="#EDF2F4"
+                       Margin="30 0 0 0"
+                       FontSize="18">
+                BookApp
+                    </TextBlock>
+                    <Button
+                    Width="18"
+                    FontSize="20"
+                    Background="Transparent"
+                    Foreground="#D90429"
+                    BorderThickness="0"
+                    Content="&#x2718;"
+                    HorizontalAlignment="Right"
+                    Margin="0 -25 15 0" 
+                    MouseDown="Close_MouseDown">
+                    </Button>
+                </StackPanel>
+            </Border>
+
+        </Border>
+        <Border Background="#EDF2F4" BorderThickness="3" BorderBrush="#2B2D42" Grid.Row="1">
+            <ContentControl Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                        <views:HomeView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:SessionViewModel}">
+                        <views:SessionView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Border>
+    </Grid>
 </Window>
