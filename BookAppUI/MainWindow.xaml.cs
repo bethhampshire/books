@@ -26,7 +26,7 @@ namespace BookAppUI
             }
         }
 
-        private void Close_MouseDown(object sender, MouseButtonEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

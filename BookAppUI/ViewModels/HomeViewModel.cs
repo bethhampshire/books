@@ -11,7 +11,7 @@ namespace BookAppUI.ViewModels
 {
     public class HomeViewModel: ViewModelBase
     {
-        public string WelcomeMessage => "Welcome Beth";
+        public string WelcomeMessage => "Welcome Nigel";
 
         public ICommand NavigateStartSessionCommand { get; }
 
