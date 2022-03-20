@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:BookAppUI.Views"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="570"
+    d:DesignWidth="1000"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="BasicButton" TargetType="{x:Type Button}">
@@ -50,18 +50,74 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="BasicButton_Invert" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#4D9078"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border
+                                Name="border"
+                                BorderBrush="#4D9078"
+                                BorderThickness="3"
+                                Background="Transparent"
+                                CornerRadius="15"
+                                Height="35"></Border>
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#4D9078" />
+                                <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#4D9078" />
+                                <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="StoreTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#14213D"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="0 15 0 0"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+        </Style>
+        <Style x:Key="Price" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#4D9078"></Setter>
+            <Setter Property="FontSize" Value="35"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="0 5 0 0"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="FontStretch" Value="UltraExpanded"></Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="195" />
-                <RowDefinition Height="90" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0"
                         Grid.Column="0"
@@ -70,27 +126,56 @@
                         >
                 <StackPanel Width="175"
                             Margin="15 0 0 0"
-                            Height="175">
-                    <TextBlock Background="#8D99AE"
-                               Height="180">
-                        
+                            Height="160"
+                            Background="#EDF2F4"
+                            >
+                    <TextBlock 
+                        Style="{StaticResource StoreTitle}">
+                        WE BUY BOOKS
                     </TextBlock>
+                    <TextBlock 
+                        Style="{StaticResource Price}">
+                        £ 0.50
+                    </TextBlock>
+                    <Button Style="{StaticResource BasicButton_Invert}"
+                            Margin="0 15 0 0"
+                            Width="130">
+                        Send to basket
+                    </Button>
                 </StackPanel>
                 <StackPanel Width="175"
                             Margin="15 0 0 0"
-                            Height="175">
-                    <TextBlock Background="#8D99AE"
-                               Height="180">
-
+                            Height="160"
+                            Background="#EDF2F4">
+                    <TextBlock Style="{StaticResource StoreTitle}">
+                        ZIFFIT
                     </TextBlock>
+                    <TextBlock 
+                        Style="{StaticResource Price}">
+                        £ 0.40
+                    </TextBlock>
+                    <Button Style="{StaticResource BasicButton_Invert}"
+                            Margin="0 15 0 0"
+                            Width="130">
+                        Send to basket
+                    </Button>
                 </StackPanel>
                 <StackPanel Width="175"
                             Margin="15 0 0 0"
-                            Height="175">
-                    <TextBlock Background="#8D99AE"
-                               Height="180">
-
+                            Height="160"
+                            Background="#EDF2F4">
+                    <TextBlock Style="{StaticResource StoreTitle}">
+                        MUSIC MAGPIE
                     </TextBlock>
+                    <TextBlock 
+                        Style="{StaticResource Price}">
+                        £ 0.30
+                    </TextBlock>
+                    <Button Style="{StaticResource BasicButton_Invert}"
+                            Margin="0 15 0 0"
+                            Width="130">
+                        Send to basket
+                    </Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1"
@@ -102,22 +187,22 @@
                 <StackPanel Orientation="Horizontal"
                             >
                     <TextBlock FontSize="28"
-                               Foreground="#2B2D42"
+                               Foreground="#EDF2F4"
                                Text="BARCODE:  ">
                     </TextBlock>
                     <TextBlock FontSize="28"
-                               Foreground="#2B2D42"
+                               Foreground="#EDF2F4"
                                >
                         2135748645
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock FontSize="28"
-                               Foreground="#2B2D42"
+                               Foreground="#EDF2F4"
                                Text="TITLE:  ">
                     </TextBlock>
                     <TextBlock FontSize="28"
-                               Foreground="#2B2D42">
+                               Foreground="#EDF2F4">
                         Norwegian wood
                     </TextBlock>
                 </StackPanel>
@@ -129,7 +214,6 @@
                          Width="365"
                          Height="30"
                          HorizontalAlignment="Left">
-
                 </TextBox>
                 <Button Margin="15"
                         Height="30"
@@ -140,21 +224,28 @@
                     &#x1f50e;
                 </Button>
             </StackPanel>
-            
+            <StackPanel
+                Grid.Column="1"
+                Grid.RowSpan="4">
+                <Rectangle
+                    Height="540"
+                    Fill="#EDF2F4"
+                    Margin="0 15 15 15"></Rectangle>
+            </StackPanel>
             <Button Style="{StaticResource BasicButton}"
             Grid.Row="3"
             Content="Back"
                     Command="{Binding NavigateHomeCommand}"
-                    Margin="30 0 0 0"
+                    Margin="30 0 0 20"
                     HorizontalAlignment="Left"
             Width="130">
             </Button>
-            <Button Style="{StaticResource BasicButton}"
+            <Button Style="{StaticResource BasicButton_Invert}"
             Grid.Row="3"
             Grid.Column="1"
             Content="End session"
                     Command="{Binding NavigateEndSessionCommand}"
-                    Margin="15 0 15 0"
+                    Margin="15 0 15 20"
             Width="130">
             </Button>
         </Grid>
