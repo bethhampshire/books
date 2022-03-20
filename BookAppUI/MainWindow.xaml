@@ -14,21 +14,22 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height= "570"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0"
                 MouseDown="Border_MouseDown">
-            <Border Background="#2B2D42"
+            <Border Background="#EDF2F4"
                     Grid.Row="0"
                     VerticalAlignment="Center"
                     Height="30">
                 <StackPanel>
                     <TextBlock Grid.Row="0" 
                        Grid.Column="0" 
-                       Foreground="#EDF2F4"
-                       Margin="30 0 0 0"
-                       FontSize="18">
-                BookApp
+                       Foreground="#2B2D42"
+                       Margin="15 3 0 0"
+                       FontSize="18"
+                       FontWeight="DemiBold">
+                    Nigel's books
                     </TextBlock>
                     <Button
                     Width="18"
@@ -38,14 +39,13 @@
                     BorderThickness="0"
                     Content="&#x2718;"
                     HorizontalAlignment="Right"
-                    Margin="0 -25 15 0" 
-                    MouseDown="Close_MouseDown">
+                    Margin="0 -30 15 0" 
+                    Click="CloseButton_Click">
                     </Button>
                 </StackPanel>
             </Border>
-
         </Border>
-        <Border Background="#EDF2F4" BorderThickness="3" BorderBrush="#2B2D42" Grid.Row="1">
+        <Border Background="#2B2D42" BorderThickness="3" BorderBrush="#2B2D42" Grid.Row="1">
             <ContentControl Content="{Binding CurrentViewModel}">
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
@@ -53,6 +53,9 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:SessionViewModel}">
                         <views:SessionView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:EndSessionViewModel}">
+                        <views:EndSession/>
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

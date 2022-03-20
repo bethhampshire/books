@@ -11,8 +11,11 @@ namespace BookAppUI.ViewModels
 {
     public class EndSessionViewModel: ViewModelBase
     {
+        public ICommand NavigateHomeCommand { get; }
+
         public EndSessionViewModel(NavigationStore navigationStore)
         {
+            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
         }
     }
 }
