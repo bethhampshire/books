@@ -13,6 +13,9 @@ namespace BookAppUI.ViewModels
     public class SessionViewModel: ViewModelBase
     {
         public string StartSessionMessage => "Session Started you go Beth";
+        public string PriceMM => "£0.20";
+        public string PriceZF => "£0.50";
+        public string PriceSIB => "£0.30";
         public string barcode = "9780099448822";
 
         public ICommand NavigateHomeCommand { get; }
@@ -22,10 +25,7 @@ namespace BookAppUI.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             NavigateEndSessionCommand = new NavigateCommand<EndSessionViewModel>(navigationStore, () => new EndSessionViewModel(navigationStore));
-            //new MusicMagpieService().GetPrice(barcode).ContinueWith((task) =>
-            //{
-            //    var musicMagpiePrice = task.Result;
-            //});
+
         }
     }
 }

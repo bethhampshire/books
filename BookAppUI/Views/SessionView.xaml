@@ -131,10 +131,10 @@
                         Margin="15 0 0 0">
                     <StackPanel>
                         <TextBlock Style="{StaticResource StoreTitle}">
-                            WE BUY BOOKS
+                            SELL IT BACK
                         </TextBlock>
-                        <TextBlock Style="{StaticResource Price}">
-                            £0.50
+                        <TextBlock Style="{StaticResource Price}"
+                                   Text="{Binding PriceSIB}">
                         </TextBlock>
                         <Button Style="{StaticResource BasicButton_Invert}"
                                 Margin="0 15 0 0"
@@ -152,8 +152,8 @@
                         <TextBlock Style="{StaticResource StoreTitle}">
                             ZIFFIT
                         </TextBlock>
-                        <TextBlock Style="{StaticResource Price}">
-                            £0.30
+                        <TextBlock Style="{StaticResource Price}"
+                                   Text="{Binding PriceZF}">
                         </TextBlock>
                         <Button Style="{StaticResource BasicButton_Invert}"
                                 Margin="0 15 0 0"
@@ -171,8 +171,8 @@
                         <TextBlock Style="{StaticResource StoreTitle}">
                             MUSIC MAGPIE
                         </TextBlock>
-                        <TextBlock Style="{StaticResource Price}">
-                            £0.30
+                        <TextBlock Style="{StaticResource Price}"
+                                   Text="{Binding PriceMM}">
                         </TextBlock>
                         <Button Style="{StaticResource BasicButton_Invert}"
                                 Margin="0 15 0 0"
@@ -195,8 +195,7 @@
                                Text="BARCODE:  ">
                     </TextBlock>
                     <TextBlock FontSize="28"
-                               Foreground="#EDF2F4"
-                               >
+                               Foreground="#EDF2F4">
                         2135748645
                     </TextBlock>
                 </StackPanel>
@@ -218,7 +217,8 @@
                          Width="365"
                          Height="30"
                          HorizontalAlignment="Left"
-                         FontSize="20">
+                         FontSize="20"
+                         Name="BarcodeInput">
                 </TextBox>
                 <Button Margin="15"
                         Height="30"

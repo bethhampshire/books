@@ -10,7 +10,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="BasicButton" TargetType="{x:Type Button}">
@@ -28,7 +28,8 @@
             <Border Background="#EDF2F4"
                     Grid.Row="0"
                     VerticalAlignment="Center"
-                    Height="30">
+                    Height="30"
+                    CornerRadius="10 10 0 0">
                 <StackPanel>
                     <TextBlock Grid.Row="0" 
                        Grid.Column="0" 
@@ -52,7 +53,11 @@
                 </StackPanel>
             </Border>
         </Border>
-        <Border Background="#4D9078" BorderThickness="3" BorderBrush="#4D9078" Grid.Row="1">
+        <Border Background="#4D9078" 
+                BorderThickness="3" 
+                BorderBrush="#4D9078" 
+                Grid.Row="1"
+                CornerRadius="0 0 10 10">
             <ContentControl Content="{Binding CurrentViewModel}">
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
