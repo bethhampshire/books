@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using BookAppUI.Service;
 using BookAppUI.Stores;
 using BookAppUI.ViewModels;
 
@@ -17,6 +18,10 @@ namespace BookAppUI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //new PriceService().GetPrice(Models.StoreType.MusicMagpie).ContinueWith((task) =>
+            //{
+            //    var store = task.Result;
+            //});
             NavigationStore navigationStore = new NavigationStore();
 
             navigationStore.CurrentViewModel = new HomeViewModel(navigationStore);
