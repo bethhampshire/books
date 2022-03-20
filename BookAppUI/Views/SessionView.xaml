@@ -8,10 +8,52 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="BasicButton" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#EDF2F4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border
+                                Name="border"
+                                BorderBrush="#EDF2F4"
+                                BorderThickness="3"
+                                Background="Transparent"
+                                CornerRadius="15"
+                                Height="35"></Border>
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#EDF2F4" />
+                                <Setter Property="Foreground" Value="#4D9078"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#EDF2F4" />
+                                <Setter Property="Foreground" Value="#4D9078"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="195" />
                 <RowDefinition Height="90" />
                 <RowDefinition Height="100" />
@@ -21,36 +63,7 @@
                 <ColumnDefinition Width="600"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <Border Background="#2B2D42"
-                    Grid.Row="0"
-                    VerticalAlignment="Center"
-                    Height="30">
-                <TextBlock Grid.Row="0" 
-                       Grid.Column="0" 
-                       Foreground="#EDF2F4"
-                       Margin="30 0 0 0"
-                       FontSize="18">
-                BookApp
-                </TextBlock>
-            </Border>
-            <Border Background="#2B2D42"
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    VerticalAlignment="Center"
-                    Height="30">
-                <Button Grid.Row="0" 
-                    Grid.Column="1"
-                    Width="18"
-                    FontSize="20"
-                    Background="Transparent"
-                    Foreground="#D90429"
-                    BorderThickness="0"
-                    Content="&#x2718;"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 15 0" >
-                </Button>
-            </Border>
-            <StackPanel Grid.Row="1"
+            <StackPanel Grid.Row="0"
                         Grid.Column="0"
                         Margin="10 10 20 10"
                         Orientation="Horizontal"
@@ -80,7 +93,7 @@
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="2"
+            <StackPanel Grid.Row="1"
                         Grid.Column="0"
                         Orientation="Vertical"
                         Margin="30 0 0 0"
@@ -109,14 +122,14 @@
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="3"
+            <StackPanel Grid.Row="2"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
                 <TextBox Margin="30 0 0 0"
                          Width="365"
                          Height="30"
                          HorizontalAlignment="Left">
-                    
+
                 </TextBox>
                 <Button Margin="15"
                         Height="30"
@@ -127,28 +140,23 @@
                     &#x1f50e;
                 </Button>
             </StackPanel>
-            <Button
-            Grid.Row="4"
-                Margin="30 0 0 0"
-            Command="{Binding NavigateHomeCommand}"
-            Content="Back" 
-                Width="50"
-                HorizontalAlignment="Left"
-                BorderThickness="0"
-                />
-
-            <Button Grid.Column="1"
-                    Grid.Row="4"
-                    Content="End session"
+            
+            <Button Style="{StaticResource BasicButton}"
+            Grid.Row="3"
+            Content="Back"
+                    Command="{Binding NavigateHomeCommand}"
+                    Margin="30 0 0 0"
+                    HorizontalAlignment="Left"
+            Width="130">
+            </Button>
+            <Button Style="{StaticResource BasicButton}"
+            Grid.Row="3"
+            Grid.Column="1"
+            Content="End session"
                     Command="{Binding NavigateEndSessionCommand}"
                     Margin="15 0 15 0"
-                    BorderThickness="0">
+            Width="130">
             </Button>
-            <!--<TextBlock
-            Grid.Row="4"
-            Grid.Column="1"
-            Margin="0 20 0 0"
-            Text="{Binding StartSessionMessage}" />-->
         </Grid>
     </Grid>
 </UserControl>
