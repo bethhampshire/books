@@ -8,11 +8,53 @@
     d:DesignHeight="570"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="BasicButton" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#EDF2F4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border
+                                Name="border"
+                                BorderBrush="#EDF2F4"
+                                BorderThickness="3"
+                                Background="Transparent"
+                                CornerRadius="15"
+                                Height="35"></Border>
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#EDF2F4" />
+                                <Setter Property="Foreground" Value="#4D9078"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#EDF2F4" />
+                                <Setter Property="Foreground" Value="#4D9078"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
@@ -23,13 +65,13 @@
                 FontSize="50"
                 FontWeight="Medium"
                 Foreground="#EDF2F4"/>
-            <Button
+            <Button Style="{StaticResource BasicButton}"
             Grid.Row="0"
-            Margin="0 20 0 0"
-            Padding="5 2"
-            MaxWidth="90"
-            Command="{Binding NavigateStartSessionCommand}"
-            Content="Start session" />
+            Margin="0 30 0 0"
+            Width="130"
+            Command="{Binding NavigateStartSessionCommand}">
+                Start session
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>  
