@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace BookAppUI.Service
 {
-    public class MusicMagpieService
+    public class SellItBackService
     {
         public async Task<PriceModel> GetPrice(string barcode)
         {
             string url = "";
-            url = $"https://www.musicmagpie.co.uk/Umbraco/Surface/MediaSearch/SearchItemByBarcode?barcode={ barcode }";
+            url = $"https://www.sellitback.com/Sellitback.svc/SearchItem?UserID=&CartID=132922782359545213&EAN={ barcode }";
 
             HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -24,6 +24,7 @@ namespace BookAppUI.Service
             resp = resp.Replace("\\", "");
             // JsonConvert.DeserializeObject<List<Contributor>>(resp);
             PriceModel priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
+
             return priceModel;
         }
     }
