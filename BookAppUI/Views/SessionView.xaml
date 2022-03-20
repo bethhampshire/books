@@ -124,59 +124,63 @@
                         Margin="10 10 20 10"
                         Orientation="Horizontal"
                         >
-                <StackPanel Width="175"
-                            Margin="15 0 0 0"
-                            Height="160"
-                            Background="#EDF2F4"
-                            >
-                    <TextBlock 
-                        Style="{StaticResource StoreTitle}">
-                        WE BUY BOOKS
-                    </TextBlock>
-                    <TextBlock 
-                        Style="{StaticResource Price}">
-                        £ 0.50
-                    </TextBlock>
-                    <Button Style="{StaticResource BasicButton_Invert}"
-                            Margin="0 15 0 0"
+                <Border Background="#EDF2F4"
+                        Width="175"
+                        Height=" 160"
+                        CornerRadius="10"
+                        Margin="15 0 0 0">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource StoreTitle}">
+                            WE BUY BOOKS
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Price}">
+                            £0.50
+                        </TextBlock>
+                        <Button Style="{StaticResource BasicButton_Invert}"
+                                Margin="0 15 0 0"
                             Width="130">
-                        Send to basket
-                    </Button>
-                </StackPanel>
-                <StackPanel Width="175"
-                            Margin="15 0 0 0"
-                            Height="160"
-                            Background="#EDF2F4">
-                    <TextBlock Style="{StaticResource StoreTitle}">
-                        ZIFFIT
-                    </TextBlock>
-                    <TextBlock 
-                        Style="{StaticResource Price}">
-                        £ 0.40
-                    </TextBlock>
-                    <Button Style="{StaticResource BasicButton_Invert}"
-                            Margin="0 15 0 0"
+                            Send to basket
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Background="#EDF2F4"
+                        Width="175"
+                        Height=" 160"
+                        CornerRadius="10"
+                        Margin="15 0 0 0">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource StoreTitle}">
+                            ZIFFIT
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Price}">
+                            £0.30
+                        </TextBlock>
+                        <Button Style="{StaticResource BasicButton_Invert}"
+                                Margin="0 15 0 0"
                             Width="130">
-                        Send to basket
-                    </Button>
-                </StackPanel>
-                <StackPanel Width="175"
-                            Margin="15 0 0 0"
-                            Height="160"
-                            Background="#EDF2F4">
-                    <TextBlock Style="{StaticResource StoreTitle}">
-                        MUSIC MAGPIE
-                    </TextBlock>
-                    <TextBlock 
-                        Style="{StaticResource Price}">
-                        £ 0.30
-                    </TextBlock>
-                    <Button Style="{StaticResource BasicButton_Invert}"
-                            Margin="0 15 0 0"
+                            Send to basket
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Background="#EDF2F4"
+                        Width="175"
+                        Height=" 160"
+                        CornerRadius="10"
+                        Margin="15 0 0 0">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource StoreTitle}">
+                            MUSIC MAGPIE
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Price}">
+                            £0.30
+                        </TextBlock>
+                        <Button Style="{StaticResource BasicButton_Invert}"
+                                Margin="0 15 0 0"
                             Width="130">
-                        Send to basket
-                    </Button>
-                </StackPanel>
+                            Send to basket
+                        </Button>
+                    </StackPanel>
+                </Border>
             </StackPanel>
             <StackPanel Grid.Row="1"
                         Grid.Column="0"
@@ -213,7 +217,8 @@
                 <TextBox Margin="30 0 0 0"
                          Width="365"
                          Height="30"
-                         HorizontalAlignment="Left">
+                         HorizontalAlignment="Left"
+                         FontSize="20">
                 </TextBox>
                 <Button Margin="15"
                         Height="30"
@@ -227,10 +232,11 @@
             <StackPanel
                 Grid.Column="1"
                 Grid.RowSpan="4">
-                <Rectangle
-                    Height="540"
-                    Fill="#EDF2F4"
-                    Margin="0 15 15 15"></Rectangle>
+                <Border Height="540"
+                        Background="#EDF2F4"
+                        Margin="0 15 15 15"
+                        CornerRadius="15">
+                </Border>
             </StackPanel>
             <Button Style="{StaticResource BasicButton}"
             Grid.Row="3"
