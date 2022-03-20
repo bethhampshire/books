@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookAppUI.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace BookAppUI
         public MainWindow()
         {
             InitializeComponent();
+            ApiHelper.InitializeClient();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
