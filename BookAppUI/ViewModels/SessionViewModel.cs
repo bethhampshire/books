@@ -22,10 +22,10 @@ namespace BookAppUI.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             NavigateEndSessionCommand = new NavigateCommand<EndSessionViewModel>(navigationStore, () => new EndSessionViewModel(navigationStore));
-            new MusicMagpieService().GetPrice(barcode).ContinueWith((task) =>
-            {
-                var musicMagpiePrice = task.Result;
-            });
+            //new MusicMagpieService().GetPrice(barcode).ContinueWith((task) =>
+            //{
+            //    var musicMagpiePrice = task.Result;
+            //});
         }
     }
 }
