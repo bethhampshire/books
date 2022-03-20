@@ -225,7 +225,8 @@
                         Background="Transparent"
                         Foreground="#2B2D42"
                         BorderThickness="0"
-                        FontSize="20">
+                        FontSize="20"
+                        Click="Search_Button_Click">
                     &#x1f50e;
                 </Button>
             </StackPanel>
