@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace BookAppUI.Models
 {
-    public class ZiffitModel
+    public class ValueDataType
     {
         public decimal Offer { get; set; }
 
         public string Title { get; set; }
+    }
+
+    public class ZiffitModel
+    {
+        public ValueDataType value { get; set; }
+
+        public bool Success { get; set; }
     }
 }
