@@ -11,13 +11,12 @@ namespace BookAppUI.Service
 {
     public class ZiffitService
     {
-        public async Task<PriceModel> GetPrice(string barcode)
+        public async Task<ZiffitModel> GetPrice(string barcode)
         {
             var url = new Uri("https://ziffit-recommerce-gateway-eu.ziffit.com/scan");
-            //StringContent content = new StringContent("{ ean: \"9780099448822\", scanOrigin: \"ZIFFIT\"}");
             var newPost = new Post()
             {
-                ean = "9780099448822",
+                ean = barcode,
                 scanOrigin = "ZIFFIT"
             };
             var newPostJson = JsonConvert.SerializeObject(newPost);
@@ -33,31 +32,10 @@ namespace BookAppUI.Service
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);
                     var resp = await foo.Content.ReadAsStringAsync();
-                    PriceModel priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
+                    ZiffitModel priceModel = JsonConvert.DeserializeObject<ZiffitModel>(resp);
                     return priceModel;
                 };
             }
-            //string test = "{\"ean\":\"9780099448822\",\"scanOrigin\":\"ZIFFIT\"}";
-
-            //t
-            //var content = new FormUrlEncodedContent(data);
-            //var response1 = await ApiHelper.ApiClient.PostAsync(url, content);
-
-
-            //response.EnsureSuccessStatusCode();
-
-            //t
-            //var resp = await response1.Content.ReadAsStringAsync();
-
-
-            //resp = resp.TrimStart('\"');
-            //resp = resp.TrimEnd('\"');
-            //resp = resp.Replace("\\", "");
-            // JsonConvert.DeserializeObject<List<Contributor>>(resp);
-
-            //t
-            //PriceModel priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
-            //return priceModel;
         }
     }
 }

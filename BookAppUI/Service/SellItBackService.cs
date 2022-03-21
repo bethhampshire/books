@@ -11,7 +11,7 @@ namespace BookAppUI.Service
 {
     public class SellItBackService
     {
-        public async Task<PriceModel> GetPrice(string barcode)
+        public async Task<SellItBackModel> GetPrice(string barcode)
         {
             string url = "";
             url = $"https://www.sellitback.com/Sellitback.svc/SearchItem?UserID=&CartID=132922782359545213&EAN={ barcode }";
@@ -23,7 +23,7 @@ namespace BookAppUI.Service
             resp = resp.TrimEnd('\"');
             resp = resp.Replace("\\", "");
             // JsonConvert.DeserializeObject<List<Contributor>>(resp);
-            PriceModel priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
+            SellItBackModel priceModel = JsonConvert.DeserializeObject<SellItBackModel>(resp);
 
             return priceModel;
         }
