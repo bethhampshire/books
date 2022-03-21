@@ -65,6 +65,8 @@
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PriceModel.cs" />
+    <Compile Include="Models\SellItBackModel.cs" />
+    <Compile Include="Models\ZiffitModel.cs" />
     <Compile Include="Service\ApiHelper.cs" />
     <Compile Include="Service\IPriceService.cs" />
     <Compile Include="Service\MusicMagpieService.cs" />

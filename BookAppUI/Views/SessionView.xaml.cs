@@ -1,4 +1,6 @@
-﻿using BookAppUI.Service;
+﻿using BookAppUI.Models;
+using BookAppUI.Service;
+using BookAppUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,26 +25,40 @@ namespace BookAppUI.Views
         public SessionView()
         {
             InitializeComponent();
+            _sellItBackService = new SellItBackService();
+            _musicMagpieService = new MusicMagpieService();
+            _ziffitService = new ZiffitService();
         }
-        private string barcode = "9780099448822";
-        decimal ziffitPrice = 0;
-        decimal musicMagpiePrice = 0;
-        decimal sellItBackPrice = 0;
 
-        private void Search_Button_Click(object sender, RoutedEventArgs e)
+        private readonly SellItBackService _sellItBackService;
+        private readonly ZiffitService _ziffitService;
+        private readonly MusicMagpieService _musicMagpieService;
+        public string PriceMM => "£0.20";
+        public string PriceZF => "£0.50";
+        public string PriceSIB => "£0.30";
+
+        public ICommand NavigateHomeCommand { get; }
+        public ICommand NavigateEndSessionCommand { get; }
+        public PriceModel musicMagpiePrice { get; set; }
+        public ZiffitModel ziffitPrice { get; set; }
+        public SellItBackModel sellItBackPrice { get; set; }
+
+
+        private string barcode = "9780099448822";
+
+        // this returns the models
+        private async Task GetPrices()
         {
-            new ZiffitService().GetPrice(barcode).ContinueWith((task) =>
-            {
-                ziffitPrice = task.Result.Price;
-            });
-            new MusicMagpieService().GetPrice(barcode).ContinueWith((task) =>
-            {
-                musicMagpiePrice = task.Result.Price;
-            });
-            new SellItBackService().GetPrice(barcode).ContinueWith((task) =>
-            {
-                sellItBackPrice = task.Result.Price;
-            });
+            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
+            ziffitPrice = await _ziffitService.GetPrice(barcode);
+            sellItBackPrice = await _sellItBackService.GetPrice(barcode);
+        }
+
+
+        private async void Search_Button_Click(object sender, RoutedEventArgs e)
+        {
+            await GetPrices();
+
             Console.WriteLine(ziffitPrice);
             Console.WriteLine(musicMagpiePrice);
             Console.WriteLine(sellItBackPrice);
