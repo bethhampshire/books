@@ -33,9 +33,6 @@ namespace BookAppUI.Views
         private readonly SellItBackService _sellItBackService;
         private readonly ZiffitService _ziffitService;
         private readonly MusicMagpieService _musicMagpieService;
-        public string PriceMM => "£0.20";
-        public string PriceZF => "£0.50";
-        public string PriceSIB => "£0.30";
 
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateEndSessionCommand { get; }
@@ -43,25 +40,59 @@ namespace BookAppUI.Views
         public ZiffitModel ziffitPrice { get; set; }
         public SellItBackModel sellItBackPrice { get; set; }
 
-
-        private string barcode = "9780099448822";
-
+        public string title = "";
+        public string barcode = "";
         // this returns the models
-        private async Task GetPrices()
+        private async Task GetPrices(string barcode)
         {
             musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
             ziffitPrice = await _ziffitService.GetPrice(barcode);
             sellItBackPrice = await _sellItBackService.GetPrice(barcode);
         }
 
+        public string ReadBarcode(RoutedEventArgs e)
+        {
+            barcode = BarcodeInput.Text;
+            return barcode;
+        }
 
         private async void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-            await GetPrices();
+            BarcodeValue.Text = BarcodeInput.Text;
+            string barcode = ReadBarcode(e);
 
-            Console.WriteLine(ziffitPrice);
-            Console.WriteLine(musicMagpiePrice);
-            Console.WriteLine(sellItBackPrice);
+            await GetPrices(barcode);
+
+            AssignPrices();
         }
+
+        private void AssignPrices()
+        {
+            if (musicMagpiePrice != null)
+            {
+                MMPrice.Text = musicMagpiePrice.Price.ToString();
+            } else
+            {
+                MMPrice.Text = " - - ";
+            }
+            if (sellItBackPrice != null)
+            {
+                SIBPrice.Text = sellItBackPrice.Price.ToString();
+                BookTitle.Text = sellItBackPrice.Title;
+            } else
+            {
+                SIBPrice.Text = " - - ";
+            }
+            if (ziffitPrice != null)
+            {
+                ZFPrice.Text = ziffitPrice.Value.Offer.ToString();
+            }
+            else
+            {
+                ZFPrice.Text = " - - ";
+            }
+                
+        }
+
     }
 }

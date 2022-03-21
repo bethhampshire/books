@@ -134,7 +134,7 @@
                             SELL IT BACK
                         </TextBlock>
                         <TextBlock Style="{StaticResource Price}"
-                                   Text="{Binding PriceSIB}">
+                                   Name="SIBPrice">
                         </TextBlock>
                         <Button Style="{StaticResource BasicButton_Invert}"
                                 Margin="0 15 0 0"
@@ -153,7 +153,7 @@
                             ZIFFIT
                         </TextBlock>
                         <TextBlock Style="{StaticResource Price}"
-                                   Text="{Binding PriceZF}">
+                                   Name="ZFPrice">
                         </TextBlock>
                         <Button Style="{StaticResource BasicButton_Invert}"
                                 Margin="0 15 0 0"
@@ -172,7 +172,7 @@
                             MUSIC MAGPIE
                         </TextBlock>
                         <TextBlock Style="{StaticResource Price}"
-                                   Text="{Binding PriceMM}">
+                                   Name="MMPrice">
                         </TextBlock>
                         <Button Style="{StaticResource BasicButton_Invert}"
                                 Margin="0 15 0 0"
@@ -190,23 +190,15 @@
                         >
                 <StackPanel Orientation="Horizontal"
                             >
-                    <TextBlock FontSize="28"
+                    <TextBlock FontSize="40"
                                Foreground="#EDF2F4"
-                               Text="BARCODE:  ">
-                    </TextBlock>
-                    <TextBlock FontSize="28"
-                               Foreground="#EDF2F4">
-                        2135748645
+                               Name="BarcodeValue">
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="28"
+                    <TextBlock FontSize="32"
                                Foreground="#EDF2F4"
-                               Text="TITLE:  ">
-                    </TextBlock>
-                    <TextBlock FontSize="28"
-                               Foreground="#EDF2F4">
-                        Norwegian wood
+                               Name="BookTitle">
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
@@ -226,7 +218,8 @@
                         Foreground="#2B2D42"
                         BorderThickness="0"
                         FontSize="20"
-                        Click="Search_Button_Click">
+                        Click="Search_Button_Click"
+                        >
                     &#x1f50e;
                 </Button>
             </StackPanel>

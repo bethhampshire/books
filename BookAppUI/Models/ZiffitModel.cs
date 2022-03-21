@@ -15,7 +15,7 @@ namespace BookAppUI.Models
 
     public class ZiffitModel
     {
-        public ValueDataType value { get; set; }
+        public ValueDataType Value { get; set; }
 
         public bool Success { get; set; }
     }
