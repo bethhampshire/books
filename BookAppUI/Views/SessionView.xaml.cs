@@ -28,17 +28,21 @@ namespace BookAppUI.Views
             _sellItBackService = new SellItBackService();
             _musicMagpieService = new MusicMagpieService();
             _ziffitService = new ZiffitService();
+            _weBuyBooksService = new WeBuyBooksService();
         }
 
         private readonly SellItBackService _sellItBackService;
         private readonly ZiffitService _ziffitService;
         private readonly MusicMagpieService _musicMagpieService;
+        private readonly WeBuyBooksService _weBuyBooksService;
 
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateEndSessionCommand { get; }
         public PriceModel musicMagpiePrice { get; set; }
         public ZiffitModel ziffitPrice { get; set; }
         public SellItBackModel sellItBackPrice { get; set; }
+        public WeBuyBooksModel weBuyBooksPrice { get; set; }
+        // public WeBuyBooksServicecs weBuyBooksPrice { get; set; }
 
         public string title = "";
         public string barcode = "";
@@ -48,6 +52,7 @@ namespace BookAppUI.Views
             musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
             ziffitPrice = await _ziffitService.GetPrice(barcode);
             sellItBackPrice = await _sellItBackService.GetPrice(barcode);
+            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode);
         }
 
         public string ReadBarcode(RoutedEventArgs e)

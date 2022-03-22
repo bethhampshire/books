@@ -66,12 +66,15 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\SellItBackModel.cs" />
+    <Compile Include="Models\WeBuyBooksModel.cs" />
+    <Compile Include="Models\WeBuyBooksPayloadModel.cs" />
     <Compile Include="Models\ZiffitModel.cs" />
     <Compile Include="Service\ApiHelper.cs" />
     <Compile Include="Service\IPriceService.cs" />
     <Compile Include="Service\MusicMagpieService.cs" />
     <Compile Include="Service\PriceService.cs" />
     <Compile Include="Service\SellItBackService.cs" />
+    <Compile Include="Service\WeBuyBooksService.cs" />
     <Compile Include="Service\ZiffitService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\EndSessionViewModel.cs" />
