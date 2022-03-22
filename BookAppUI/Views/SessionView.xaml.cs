@@ -29,6 +29,9 @@ namespace BookAppUI.Views
             _musicMagpieService = new MusicMagpieService();
             _ziffitService = new ZiffitService();
             _weBuyBooksService = new WeBuyBooksService();
+            AddToActivityLog("Hello Beth");
+            AddToActivityLog("Your session has started");
+            PrintActivityLog(ActivityLog);
         }
 
         private readonly SellItBackService _sellItBackService;
@@ -46,6 +49,30 @@ namespace BookAppUI.Views
 
         public string title = "";
         public string barcode = "";
+
+        public List<string> ActivityLog = new List<string>();
+
+        private void AddToActivityLog(string message)
+        {
+            ActivityLog.Add(message);
+        }
+
+        private void PrintActivityLog(List<string> ActivityLog)
+        {
+            ActivityLogView.Text = "";
+            if (ActivityLog.Count == 1)
+            {
+                ActivityLogView.Text += ActivityLog[0];
+            }
+            if (ActivityLog.Count > 1)
+            {
+                foreach (var activityLog in ActivityLog)
+                {
+                    ActivityLogView.Text += System.Environment.NewLine;
+                    ActivityLogView.Text += activityLog;
+                }
+            }
+        }
         // this returns the models
         private async Task GetPrices(string barcode)
         {
@@ -58,11 +85,14 @@ namespace BookAppUI.Views
         public string ReadBarcode(RoutedEventArgs e)
         {
             barcode = BarcodeInput.Text;
+            AddToActivityLog("Searched " + barcode);
+            PrintActivityLog(ActivityLog);
             return barcode;
         }
 
         private async void Search_Button_Click(object sender, RoutedEventArgs e)
         {
+
             BarcodeValue.Text = BarcodeInput.Text;
             string barcode = ReadBarcode(e);
 
@@ -76,7 +106,8 @@ namespace BookAppUI.Views
             if (musicMagpiePrice != null)
             {
                 MMPrice.Text = musicMagpiePrice.Price.ToString();
-            } else
+            }
+            else
             {
                 MMPrice.Text = " - - ";
             }
@@ -84,7 +115,8 @@ namespace BookAppUI.Views
             {
                 SIBPrice.Text = sellItBackPrice.Price.ToString();
                 BookTitle.Text = sellItBackPrice.Title;
-            } else
+            }
+            else
             {
                 SIBPrice.Text = " - - ";
             }
@@ -96,7 +128,7 @@ namespace BookAppUI.Views
             {
                 ZFPrice.Text = " - - ";
             }
-                
+
         }
 
     }

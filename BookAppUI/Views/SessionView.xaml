@@ -121,14 +121,15 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0"
                         Grid.Column="0"
-                        Margin="10 10 20 10"
+                        Margin="15 20 20 10"
                         Orientation="Horizontal"
                         >
                 <Border Background="#EDF2F4"
-                        Width="175"
-                        Height=" 160"
+                        Width="155"
+                        Height="110"
                         CornerRadius="10"
-                        Margin="15 0 0 0">
+                        Margin="0 0 0 0"
+                        VerticalAlignment="Center">
                     <StackPanel>
                         <TextBlock Style="{StaticResource StoreTitle}">
                             SELL IT BACK
@@ -136,16 +137,11 @@
                         <TextBlock Style="{StaticResource Price}"
                                    Name="SIBPrice">
                         </TextBlock>
-                        <Button Style="{StaticResource BasicButton_Invert}"
-                                Margin="0 15 0 0"
-                            Width="130">
-                            Send to basket
-                        </Button>
                     </StackPanel>
                 </Border>
                 <Border Background="#EDF2F4"
-                        Width="175"
-                        Height=" 160"
+                        Width="155"
+                        Height="110"
                         CornerRadius="10"
                         Margin="15 0 0 0">
                     <StackPanel>
@@ -155,16 +151,11 @@
                         <TextBlock Style="{StaticResource Price}"
                                    Name="ZFPrice">
                         </TextBlock>
-                        <Button Style="{StaticResource BasicButton_Invert}"
-                                Margin="0 15 0 0"
-                            Width="130">
-                            Send to basket
-                        </Button>
                     </StackPanel>
                 </Border>
                 <Border Background="#EDF2F4"
-                        Width="175"
-                        Height=" 160"
+                        Width="155"
+                        Height="110"
                         CornerRadius="10"
                         Margin="15 0 0 0">
                     <StackPanel>
@@ -174,18 +165,29 @@
                         <TextBlock Style="{StaticResource Price}"
                                    Name="MMPrice">
                         </TextBlock>
-                        <Button Style="{StaticResource BasicButton_Invert}"
-                                Margin="0 15 0 0"
-                            Width="130">
-                            Send to basket
-                        </Button>
+                    </StackPanel>
+
+                </Border>
+                <Border Background="#EDF2F4"
+                        Width="155"
+                        Height="110"
+                        CornerRadius="10"
+                        Margin="15 0 0 0">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource StoreTitle}">
+                            WE BUY BOOKS
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Price}"
+                                   >
+                            £40
+                        </TextBlock>
                     </StackPanel>
                 </Border>
             </StackPanel>
             <StackPanel Grid.Row="1"
                         Grid.Column="0"
                         Orientation="Vertical"
-                        Margin="30 0 0 0"
+                        Margin="15 0 0 0"
                         VerticalAlignment="Center"
                         >
                 <StackPanel Orientation="Horizontal"
@@ -197,30 +199,41 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock FontSize="32"
+                               Height="90"
+                               MaxWidth="550"
                                Foreground="#EDF2F4"
-                               Name="BookTitle">
+                               Name="BookTitle"
+                               TextWrapping="WrapWithOverflow">
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="2"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
-                <TextBox Margin="30 0 0 0"
-                         Width="365"
-                         Height="30"
+                <TextBox 
+                        Margin="15 0 0 0"
+                         Width="580"
+                         Height="60"
                          HorizontalAlignment="Left"
-                         FontSize="20"
-                         Name="BarcodeInput">
+                         FontSize="47"
+                         Name="BarcodeInput"
+                        BorderBrush="#14213D"
+                        BorderThickness="3"
+                        Padding="0 -2 0 0"
+                        Background="#EDF2F4"
+                        Foreground="#14213D">
                 </TextBox>
                 <Button Margin="15"
-                        Height="30"
+                        Height="60"
                         Background="Transparent"
                         Foreground="#2B2D42"
                         BorderThickness="0"
-                        FontSize="20"
+                        FontSize="50"
+                        Padding="0 -5 0 0"
+                        FontWeight="Medium"
                         Click="Search_Button_Click"
                         >
-                    &#x1f50e;
+                    &#128270;
                 </Button>
             </StackPanel>
             <StackPanel
@@ -230,13 +243,24 @@
                         Background="#EDF2F4"
                         Margin="0 15 15 15"
                         CornerRadius="15">
+                    <Border BorderBrush="#14213D"
+                            BorderThickness="1"
+                            Width="240"
+                            Height="450"
+                            Margin="0 -45 0 0"
+                            CornerRadius="5">
+                        <TextBlock Foreground="#14213D"
+                                   FontSize="15"
+                                   Name="ActivityLogView">
+                        </TextBlock>
+                    </Border>
                 </Border>
             </StackPanel>
             <Button Style="{StaticResource BasicButton}"
             Grid.Row="3"
             Content="Back"
                     Command="{Binding NavigateHomeCommand}"
-                    Margin="30 0 0 20"
+                    Margin="15 0 0 20"
                     HorizontalAlignment="Left"
             Width="130">
             </Button>
