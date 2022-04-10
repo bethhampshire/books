@@ -50,11 +50,100 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="HamburgerButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+            <Setter Property="MaxHeight" Value="70"></Setter>
+            <Setter Property="MaxWidth" Value="40"></Setter>
+            <Setter Property="FontSize" Value="40"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Padding" Value="0 0 0 0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <TextBlock 
+                                Name="textColour"
+                                Foreground="#EDF2F4"
+                                       >
+                                &#x2630;
+                            </TextBlock>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#14213D"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LeftPanel" TargetType="{x:Type Border}">
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Background" Value="#14213D"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="CornerRadius" Value="0 0 0 10"></Setter>
+        </Style>
+        <Style x:Key="Overlay" TargetType="Border">
+            <Setter Property="Background" Value="#14213D"></Setter>
+            <Setter Property="Width" Value="700"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="300 0 0 0"></Setter>
+            <Setter Property="Opacity" Value="0.8"></Setter>
+            <Setter Property="CornerRadius" Value="0 0 10 0"></Setter>
+        </Style>
+        <Style x:Key="PanelCloseButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+            <Setter Property="MaxHeight" Value="70"></Setter>
+            <Setter Property="MaxWidth" Value="40"></Setter>
+            <Setter Property="FontSize" Value="40"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Padding" Value="0 0 0 0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <TextBlock 
+                                Name="textColour"
+                                Foreground="#EDF2F4"
+                                       >
+                                &#x2715;
+                            </TextBlock>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#4D9078"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Button Style="{StaticResource HamburgerButton}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10 0 0 0"
+                Click="OpenPanel_Click">
+        </Button>
+        <Border Style="{StaticResource LeftPanel}"
+                Name="Panel">
+            <StackPanel >
+                <Button Style="{StaticResource PanelCloseButton}"
+                    Name="ClosePanel"
+                        HorizontalAlignment="Left"
+                        Margin="10 0 0 0"
+                        Click="ClosePanel_Click"></Button>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource Overlay}"
+                Name="Overlay">
+        </Border>
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">

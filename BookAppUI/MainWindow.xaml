@@ -54,7 +54,7 @@
             </Border>
         </Border>
         <Border Background="#4D9078" 
-                BorderThickness="3" 
+                BorderThickness="0" 
                 BorderBrush="#4D9078" 
                 Grid.Row="1"
                 CornerRadius="0 0 10 10">

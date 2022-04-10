@@ -22,6 +22,26 @@ namespace BookAppUI.Views
         public HomeView()
         {
             InitializeComponent();
+
+            if (_isPanelVisible == false)
+            {
+                Panel.Visibility = Visibility.Collapsed;
+                Overlay.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private bool _isPanelVisible = false;
+
+        private void ClosePanel_Click(object sender, RoutedEventArgs e)
+        {
+            Panel.Visibility = Visibility.Collapsed;
+            Overlay.Visibility = Visibility.Collapsed;
+        }
+
+        private void OpenPanel_Click(object sender, RoutedEventArgs e)
+        {
+            Panel.Visibility = Visibility.Visible;
+            Overlay.Visibility = Visibility.Visible;
         }
     }
 }

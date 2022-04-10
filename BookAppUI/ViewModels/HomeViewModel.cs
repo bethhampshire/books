@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BookAppUI.ViewModels
@@ -13,11 +14,17 @@ namespace BookAppUI.ViewModels
     {
         public string WelcomeMessage => "Welcome Nigel";
 
+        private bool _isPanelVisible;
+
         public ICommand NavigateStartSessionCommand { get; }
 
         public HomeViewModel(NavigationStore navigationStore)
         {
             NavigateStartSessionCommand = new NavigateCommand<SessionViewModel>(navigationStore, () => new SessionViewModel(navigationStore));
+
+            _isPanelVisible = false;
         }
+
+
     }
 }
