@@ -120,6 +120,27 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="AuthName" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Margin" Value="10 0 0 5"></Setter>
+        </Style>
+        <Style x:Key="AuthTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="280"></Setter>
+            <Setter Property="Margin" Value="0 0 0 10"></Setter>
+            <Setter Property="Height" Value="20"></Setter>
+        </Style>
+        <Style x:Key="TitlePanel" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+            <Setter Property="Margin" Value="10 5 0 10"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
+        </Style>
+        <Style x:Key="DescriptionPanel" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#EDF2F4"></Setter>
+            <Setter Property="Margin" Value="10 5 10 10"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -139,6 +160,22 @@
                         HorizontalAlignment="Left"
                         Margin="10 0 0 0"
                         Click="ClosePanel_Click"></Button>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TitlePanel}">Set auth tokens</TextBlock>
+                    <TextBlock Style="{StaticResource DescriptionPanel}">Follow the steps provided to update the authorisation tokens</TextBlock>
+                    <TextBlock Style="{StaticResource AuthName}">Sell it back</TextBlock>
+                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
+                    <TextBlock Style="{StaticResource AuthName}">Ziffit</TextBlock>
+                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
+                    <TextBlock Style="{StaticResource AuthName}">Music magpie</TextBlock>
+                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
+                    <TextBlock Style="{StaticResource AuthName}">We buy books</TextBlock>
+                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
+                </StackPanel>
+                <Button
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0 130 10 0">Save</Button>
             </StackPanel>
         </Border>
         <Border Style="{StaticResource Overlay}"
