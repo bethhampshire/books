@@ -38,7 +38,11 @@ namespace BookAppUI.Service
 
                     try
                     {
-                        if (priceModel.Value.RejectionCode != null)
+                        if (priceModel.Value == null)
+                        {
+                            priceModel.Status = StatusEnum.ItemNotFound;
+                        }
+                        else if (priceModel.Value.RejectionCode != null)
                         {
                             if (priceModel.Value.RejectionCode.Contains("TOO_MANY_DUPLICATES"))
                             {
