@@ -44,6 +44,10 @@ namespace BookAppUI.Service
                             {
                                 priceModel.Status = StatusEnum.DuplicateItem;
                             }
+                            else if (priceModel.Value.RejectionCode.Contains("COMMON"))
+                            {
+                                priceModel.Status = StatusEnum.ItemNotAccepted;
+                            }
                         }
                         else if (!priceModel.Success)
                         {

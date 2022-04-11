@@ -34,6 +34,10 @@ namespace BookAppUI.Service
                 {
                     priceModel.Status = StatusEnum.DuplicateItem;
                 }
+                else if (resp.Contains("Unfortunately we can’t accept this title at the moment. Do you have another title you’d like to try?"))
+                {
+                    priceModel.Status = StatusEnum.ItemNotAccepted;
+                }
                 else if (resp.Contains("\"status\":0"))
                 {
                     priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
