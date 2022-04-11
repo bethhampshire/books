@@ -31,7 +31,7 @@ namespace BookAppUI.Views
             _musicMagpieService = new MusicMagpieService();
             _ziffitService = new ZiffitService();
             _weBuyBooksService = new WeBuyBooksService();
-            AddToActivityLog("Hello Beth");
+            AddToActivityLog("Hello Nigel");
             AddToActivityLog("Your session has started");
             PrintActivityLog(ActivityLog);
             authTokens = new AuthTokenModel();
@@ -107,7 +107,7 @@ namespace BookAppUI.Views
             string barcode = ReadBarcode(e);
             BarcodeInput.Text = "";
             await GetPrices(barcode);
-            AssignPrices();
+            AssignValues();
         }
 
         public void GetAuthTokens()
@@ -119,42 +119,131 @@ namespace BookAppUI.Views
             }
         }
 
-        private void AssignPrices()
+        private void AssignValues()
         {
+            BookTitle.Text = "";
+
             if (musicMagpiePrice.Status == StatusEnum.ItemAccepted)
             {
-                MMPrice.Text = musicMagpiePrice.Price.ToString();
+                MMPrice.Text = "£" + musicMagpiePrice.Price.ToString("F");
+                if (BookTitle.Text == "")
+                {
+                    BookTitle.Text = musicMagpiePrice.Album.ToString();
+                }
             }
             else
             {
                 MMPrice.Text = " - - ";
+                if (musicMagpiePrice.Status == StatusEnum.DuplicateItem)
+                {
+                    AddToActivityLog("Music magpie: No duplicate item");
+                }
+                else if (musicMagpiePrice.Status == StatusEnum.Unauthenticated)
+                {
+                    AddToActivityLog("Music magpie: Update auth token");
+                }
+                else if (musicMagpiePrice.Status == StatusEnum.ItemNotFound)
+                {
+                    AddToActivityLog("Music magpie: Item not found");
+                }
+                else if(musicMagpiePrice.Status == StatusEnum.InvalidBarcode)
+                {
+                    AddToActivityLog("Music magpie: This barcode is invalid");
+                }
             }
+
             if (sellItBackPrice.Status == StatusEnum.ItemAccepted)
             {
-                SIBPrice.Text = sellItBackPrice.Price.ToString();
+                SIBPrice.Text = "£" + sellItBackPrice.Price.ToString("F");
                 BookTitle.Text = sellItBackPrice.Title;
             }
             else
             {
                 SIBPrice.Text = " - - ";
+                if (sellItBackPrice.Status == StatusEnum.DuplicateItem)
+                {
+                    AddToActivityLog("Sell it back: No duplicate item");
+                }
+                else if (sellItBackPrice.Status == StatusEnum.Unauthenticated)
+                {
+                    AddToActivityLog("Sell it back: Update auth token");
+                }
+                else if (sellItBackPrice.Status == StatusEnum.ItemNotFound)
+                {
+                    AddToActivityLog("Sell it back: Item not found");
+                }
+                else if (sellItBackPrice.Status == StatusEnum.InvalidBarcode)
+                {
+                    AddToActivityLog("Sell it back: This barcode is invalid");
+                }
             }
+
             if (ziffitPrice.Status == StatusEnum.ItemAccepted)
             {
-                ZFPrice.Text = ziffitPrice.Value.Offer.ToString();
+                ZFPrice.Text = "£" + ziffitPrice.Value.Offer.ToString("F");
+
+                if (BookTitle.Text == "")
+                {
+                    BookTitle.Text = ziffitPrice.Value.Title.ToString();
+                }
             }
             else
             {
                 ZFPrice.Text = " - - ";
+                if (ziffitPrice.Status == StatusEnum.DuplicateItem)
+                {
+                    AddToActivityLog("Ziffit: No duplicate item");
+                }
+                else if (ziffitPrice.Status == StatusEnum.Unauthenticated)
+                {
+                    AddToActivityLog("Ziffit: Update auth token");
+                }
+                else if (ziffitPrice.Status == StatusEnum.ItemNotFound)
+                {
+                    AddToActivityLog("Ziffit: Item not found");
+                }
+                else if (ziffitPrice.Status == StatusEnum.InvalidBarcode)
+                {
+                    AddToActivityLog("Ziffit: This barcode is invalid");
+                }
             }
+
             if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
             {
-                WeBuyBooksPrice.Text = weBuyBooksPrice.Price.ToString();
+                WeBuyBooksPrice.Text = "£" + weBuyBooksPrice.Price.ToString("F");
+
+                if (BookTitle.Text == "")
+                {
+                    BookTitle.Text = weBuyBooksPrice.Item.Title.ToString();
+                }
             }
             else
             {
                 WeBuyBooksPrice.Text = " - -";
+                if (weBuyBooksPrice.Status == StatusEnum.DuplicateItem)
+                {
+                    AddToActivityLog("We buy books: No duplicate item");
+                }
+                else if (weBuyBooksPrice.Status == StatusEnum.Unauthenticated)
+                {
+                    AddToActivityLog("We buy books: Update auth token");
+                }
+                else if (weBuyBooksPrice.Status == StatusEnum.ItemNotFound)
+                {
+                    AddToActivityLog("We buy books: Item not found");
+                }
+                else if (weBuyBooksPrice.Status == StatusEnum.InvalidBarcode)
+                {
+                    AddToActivityLog("We buy books: This barcode is invalid");
+                }
             }
 
+            if (BookTitle.Text == "")
+            {
+                BookTitle.Text = "Book not found";
+            }
+
+            PrintActivityLog(ActivityLog);
         }
 
     }

@@ -197,13 +197,13 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="32"
+                        <TextBlock FontSize="30"
                                Height="90"
-                               MaxWidth="550"
+                               MaxWidth="600"
                                Foreground="#EDF2F4"
                                Name="BookTitle"
                                TextWrapping="WrapWithOverflow">
-                    </TextBlock>
+                        </TextBlock>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="2"
@@ -247,11 +247,15 @@
                     HorizontalAlignment="Center">
                     EVENT LOG
                 </TextBlock>
-                <TextBlock Foreground="#14213D"
+                <ScrollViewer Visibility="Visible"
+                              MaxHeight="420">
+                    <TextBlock Foreground="#14213D"
                             FontSize="15"
                             Name="ActivityLogView"
-                           Margin="15 0 15 15">
-                </TextBlock>
+                           Margin="15 0 15 15"
+                               >
+                    </TextBlock>
+                </ScrollViewer>
             </StackPanel>
             <Button Style="{StaticResource BasicButton}"
             Grid.Row="3"
