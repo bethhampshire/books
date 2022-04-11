@@ -20,7 +20,7 @@ namespace BookAppUI.Models
 
     public class Item
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public decimal Price { get; set; }
         public string Title { get; set; }
     }

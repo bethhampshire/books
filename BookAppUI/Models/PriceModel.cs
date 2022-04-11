@@ -19,6 +19,7 @@ namespace BookAppUI.Models
         // price
         public decimal Price { get; set; }
         public string Message { get; set; }
+        public string Album { get; set; }
         public StatusEnum Status { get; set; }
     }
 }
