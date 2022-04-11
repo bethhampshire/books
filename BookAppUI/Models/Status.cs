@@ -8,11 +8,11 @@ namespace BookAppUI.Models
 {
     public enum StatusEnum
     {
-        ItemAccepted = 0,
-        ItemNotFound = 1,
-        DuplicateItem = 2,
-        ItemNotAccepted = 3,
-        InvalidBarcode = 4,
-        Unauthenticated = 5
+        ItemNotFound = 0,
+        DuplicateItem = 1,
+        ItemNotAccepted = 2,
+        InvalidBarcode = 3,
+        Unauthenticated = 4,
+        ItemAccepted = 5
     }
 }
