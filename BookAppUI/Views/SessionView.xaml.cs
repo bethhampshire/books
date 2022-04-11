@@ -74,8 +74,8 @@ namespace BookAppUI.Views
             {
                 foreach (var activityLog in ActivityLog)
                 {
-                    ActivityLogView.Text += System.Environment.NewLine;
                     ActivityLogView.Text += activityLog;
+                    ActivityLogView.Text += System.Environment.NewLine;
                 }
             }
         }
