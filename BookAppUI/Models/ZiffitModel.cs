@@ -11,6 +11,8 @@ namespace BookAppUI.Models
         public decimal Offer { get; set; }
 
         public string Title { get; set; }
+
+        public string RejectionCode { get; set; }
     }
 
     public class ZiffitModel
@@ -18,5 +20,7 @@ namespace BookAppUI.Models
         public ValueDataType Value { get; set; }
 
         public bool Success { get; set; }
+
+        public StatusEnum Status { get; set; }
     }
 }

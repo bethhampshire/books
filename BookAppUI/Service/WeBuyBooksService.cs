@@ -26,12 +26,24 @@ namespace BookAppUI.Service
                 {
                     requestMessage.Headers.Add("x-revival-site", "1");
                     requestMessage.Headers.Add("x-revival-web", "1");
-                    requestMessage.Headers.Add("authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6ImFlZWQxZTkyNWFmYzA5OThlNTZlMGQ2MzA2NjRhMDY2NGQyMjY3NzciLCJqdGkiOiJhZWVkMWU5MjVhZmMwOTk4ZTU2ZTBkNjMwNjY0YTA2NjRkMjI2Nzc3IiwiaXNzIjoiIiwiYXVkIjoiMSIsInN1YiI6bnVsbCwiZXhwIjoxNjQ3OTI2MDgzLCJpYXQiOjE2NDc5MDQ0ODMsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJzY29wZSI6IkJBU0tFVF82MjM1ZjlhNTI2ZTExOS4xMjYwMzUyNCJ9.kki1A_jJpuVSNGrJEXp-XR7uZmgo4D5kD8FFXBRT5ii90Yvl-otEYNLxODcMByAXX1x2miD-UBPs0Y6Q-ZY0Pt_F4GiaqtIC78mzrKkHGohCUWPy9m7R5L6JwvW_fEjpcmlZEj3qJPyoAWJQDdvuYUFCI6Bkf-n7U1iZWXKDWmybYJaYhAUs4XJ8c3GjgOrocsatdrhTbfQ3-f1KcXYcbh17zJNX56Utr5X6C9ixeRK28XXpocoRImZ2DevJApshs96wbD6yrohsPAK0rH7T9R5P8oIzi0kpQfm_OJxTwYmoSN1Fkd6p6rEXohXS2_vbhbEn36pEQOi48S1ArvCD-w");
+                    requestMessage.Headers.Add("authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6IjFkYjM0YWY1NzE3NmEyYWU4ZDVmODUxYWFhZTc2NDQwNDZiMDgzMGMiLCJqdGkiOiIxZGIzNGFmNTcxNzZhMmFlOGQ1Zjg1MWFhYWU3NjQ0MDQ2YjA4MzBjIiwiaXNzIjoiIiwiYXVkIjoiMSIsInN1YiI6bnVsbCwiZXhwIjoxNjQ5NjM5Nzg1LCJpYXQiOjE2NDk2MTgxODUsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJzY29wZSI6IkJBU0tFVF82MjUzMmNmNmNjYzJkMC4wMjAwMzM0NCJ9.GwCADVHxdpJDlj5axSz5ITZ-97YqSyg3kaAKEZz3aaURy0O6ot3nah3FQ-ewp2TGlOMDILGKTtto5bY6EqlvFxqb-u1EUDqoixTY9-G8bgKSltpjsuhzLiX9pHG07VfNesjazh1NZ4bB1pPUYgXdzlrjp2BF9jsb9p9kNycGDHBDgFJdPTSymSIPZoXbKGN73yxnBlRWkZvCqC7norARIURplrKw9sX4tFeZtpOY4iYdQga9NqT2V-CWAe4Cj88hvsc5i-gILFQujJkLfi-PNwJtE4MqPL6ilLOo9UBTjqWveNzOH58PD-pikN0p619b-9I-WfV100IE2IzY-5eSFQ");
 
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);
                     var resp = await foo.Content.ReadAsStringAsync();
                     WeBuyBooksModel priceModel = JsonConvert.DeserializeObject<WeBuyBooksModel>(resp);
+                    if (priceModel.Error != null && priceModel.Error.Contains("invalid_token"))
+                    {
+                        priceModel.Status = StatusEnum.Unauthenticated;
+                    }
+                    else if (priceModel.Error != null && priceModel.Error.Contains("in_basket"))
+                    {
+                        priceModel.Status = StatusEnum.DuplicateItem;
+                    }
+                    else
+                    {
+                        priceModel.Status = StatusEnum.ItemAccepted;
+                    }
                     return priceModel;
                 };
             }
