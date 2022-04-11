@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Models\AuthTokenModel.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\SellItBackModel.cs" />
@@ -140,6 +141,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Tokens\AuthTokens.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

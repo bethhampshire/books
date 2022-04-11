@@ -128,6 +128,14 @@ namespace BookAppUI.Views
             {
                 ZFPrice.Text = " - - ";
             }
+            if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
+            {
+                WeBuyBooksPrice.Text = weBuyBooksPrice.Price.ToString();
+            }
+            else
+            {
+                WeBuyBooksPrice.Text = " - -";
+            }
 
         }
 

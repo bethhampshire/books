@@ -163,19 +163,19 @@
                 <StackPanel>
                     <TextBlock Style="{StaticResource TitlePanel}">Set auth tokens</TextBlock>
                     <TextBlock Style="{StaticResource DescriptionPanel}">Follow the steps provided to update the authorisation tokens</TextBlock>
-                    <TextBlock Style="{StaticResource AuthName}">Sell it back</TextBlock>
-                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
                     <TextBlock Style="{StaticResource AuthName}">Ziffit</TextBlock>
-                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
-                    <TextBlock Style="{StaticResource AuthName}">Music magpie</TextBlock>
-                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
+                    <TextBox Style="{StaticResource AuthTextBox}"
+                             Name="ZFAuthToken"></TextBox>
                     <TextBlock Style="{StaticResource AuthName}">We buy books</TextBlock>
-                    <TextBox Style="{StaticResource AuthTextBox}"></TextBox>
+                    <TextBox Style="{StaticResource AuthTextBox}"
+                             Name="WBBAuthToken"></TextBox>
                 </StackPanel>
                 <Button
+                    Style="{StaticResource BasicButton}"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
-                    Margin="0 130 10 0">Save</Button>
+                    Margin="0 240 10 0"
+                    Width="60">Save</Button>
             </StackPanel>
         </Border>
         <Border Style="{StaticResource Overlay}"

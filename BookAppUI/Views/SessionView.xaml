@@ -178,8 +178,7 @@
                             WE BUY BOOKS
                         </TextBlock>
                         <TextBlock Style="{StaticResource Price}"
-                                   >
-                            £40
+                                   Name="WeBuyBooksPrice">
                         </TextBlock>
                     </StackPanel>
                 </Border>
