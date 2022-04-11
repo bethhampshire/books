@@ -103,7 +103,7 @@ namespace BookAppUI.Views
 
         private void AssignPrices()
         {
-            if (musicMagpiePrice != null)
+            if (musicMagpiePrice.Status == StatusEnum.ItemAccepted)
             {
                 MMPrice.Text = musicMagpiePrice.Price.ToString();
             }
@@ -111,7 +111,7 @@ namespace BookAppUI.Views
             {
                 MMPrice.Text = " - - ";
             }
-            if (sellItBackPrice != null)
+            if (sellItBackPrice.Status == StatusEnum.ItemAccepted)
             {
                 SIBPrice.Text = sellItBackPrice.Price.ToString();
                 BookTitle.Text = sellItBackPrice.Title;
@@ -120,7 +120,7 @@ namespace BookAppUI.Views
             {
                 SIBPrice.Text = " - - ";
             }
-            if (ziffitPrice != null)
+            if (ziffitPrice.Status == StatusEnum.ItemAccepted)
             {
                 ZFPrice.Text = ziffitPrice.Value.Offer.ToString();
             }

@@ -27,12 +27,21 @@ namespace BookAppUI.Service
                 {
                     requestMessage.Headers.Add("x-region-id", "GB");
                     requestMessage.Headers.Add("accept-language", "en-GB");
-                    requestMessage.Headers.Add("authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ2aXNpdG9ySWQiOiIwMUZZSEZTMEI2SlcxWlZCRTRWWERXTllWWSIsImN1c3RvbWVySWQiOiIiLCJiYXNrZXRJZCI6IjAxRllIRlMwQjhUWE5RUEhONENZQjUzVkZLIiwibG9jYWxlIjoiZW5fR0IiLCJhdXRob3JpdGllcyI6IlJPTEVfQU5PTllNT1VTLFJPTEVfR1VFU1QiLCJleHAiOjE2NTAzOTQyODV9.ol7aw_OaVIqr9Y-rjNI9uF-U8zz170ryuhy3pqbmFv5D0x5C1UsHfmzM0uIR9eIWGWhWGHEP_YsqwmI8DiQX9w");
+                    requestMessage.Headers.Add("authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ2aXNpdG9ySWQiOiIwMUZZS1c0TTczRUtHWkNHME5ZWkY5QzgzOCIsImN1c3RvbWVySWQiOiIiLCJiYXNrZXRJZCI6IjAxRllLVzRNNzZKQTZRNFRBMlc0NzhZSlA2IiwibG9jYWxlIjoiZW5fR0IiLCJhdXRob3JpdGllcyI6IlJPTEVfQU5PTllNT1VTLFJPTEVfR1VFU1QiLCJleHAiOjE2NTIyMDUyMzJ9.0Uk8cM7PRL6bvTLLrO3dKscQjdskKVDEW8RdvxmVfB4NZFfzjqPBf2U_WlQcqUExHsUpOERFLr67RFNFXiDIyw");
 
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);
                     var resp = await foo.Content.ReadAsStringAsync();
                     ZiffitModel priceModel = JsonConvert.DeserializeObject<ZiffitModel>(resp);
+
+                    if (priceModel.Value.RejectionCode != null && priceModel.Value.RejectionCode.Contains("TOO_MANY_DUPLICATES"))
+                    {
+                        priceModel.Status = StatusEnum.DuplicateItem;
+                    }
+                    else if (!priceModel.Success)
+                    {
+                        priceModel.Status = StatusEnum.ItemNotFound;
+                    }
                     return priceModel;
                 };
             }

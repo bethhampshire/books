@@ -12,7 +12,10 @@ namespace BookAppUI.Models
         public Basket Basket { get; set; }
         public Logs Logs { get; set; }
         public decimal Price { get; set; }
-     
+        public string StatusCode { get; set; }
+        public StatusEnum Status { get; set; }
+        public string Error { get; set; }
+
     }
 
     public class Item

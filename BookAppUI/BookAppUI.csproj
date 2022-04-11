@@ -66,6 +66,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\SellItBackModel.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\WeBuyBooksModel.cs" />
     <Compile Include="Models\WeBuyBooksPayloadModel.cs" />
     <Compile Include="Models\ZiffitModel.cs" />
