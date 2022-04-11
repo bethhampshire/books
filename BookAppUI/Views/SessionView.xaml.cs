@@ -1,8 +1,10 @@
 ﻿using BookAppUI.Models;
 using BookAppUI.Service;
 using BookAppUI.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +34,8 @@ namespace BookAppUI.Views
             AddToActivityLog("Hello Beth");
             AddToActivityLog("Your session has started");
             PrintActivityLog(ActivityLog);
+            authTokens = new AuthTokenModel();
+            GetAuthTokens();
         }
 
         private readonly SellItBackService _sellItBackService;
@@ -49,6 +53,8 @@ namespace BookAppUI.Views
 
         public string title = "";
         public string barcode = "";
+
+        private AuthTokenModel authTokens;
 
         public List<string> ActivityLog = new List<string>();
 
@@ -77,9 +83,9 @@ namespace BookAppUI.Views
         private async Task GetPrices(string barcode)
         {
             musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
-            ziffitPrice = await _ziffitService.GetPrice(barcode);
+            ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token);
             sellItBackPrice = await _sellItBackService.GetPrice(barcode);
-            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode);
+            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token);
         }
 
         public string ReadBarcode(RoutedEventArgs e)
@@ -95,10 +101,18 @@ namespace BookAppUI.Views
 
             BarcodeValue.Text = BarcodeInput.Text;
             string barcode = ReadBarcode(e);
-
+            BarcodeInput.Text = "";
             await GetPrices(barcode);
-
             AssignPrices();
+        }
+
+        public void GetAuthTokens()
+        {
+            using (StreamReader r = new StreamReader("../../Tokens/AuthTokens.json"))
+            {
+                string json = r.ReadToEnd();
+                authTokens = JsonConvert.DeserializeObject<AuthTokenModel>(json);
+            }
         }
 
         private void AssignPrices()
@@ -127,6 +141,14 @@ namespace BookAppUI.Views
             else
             {
                 ZFPrice.Text = " - - ";
+            }
+            if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
+            {
+                WeBuyBooksPrice.Text = weBuyBooksPrice.Price.ToString();
+            }
+            else
+            {
+                WeBuyBooksPrice.Text = " - -";
             }
 
         }
