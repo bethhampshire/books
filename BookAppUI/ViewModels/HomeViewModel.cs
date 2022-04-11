@@ -14,17 +14,12 @@ namespace BookAppUI.ViewModels
     {
         public string WelcomeMessage => "Welcome Nigel";
 
-        private bool _isPanelVisible;
-
         public ICommand NavigateStartSessionCommand { get; }
 
         public HomeViewModel(NavigationStore navigationStore)
         {
             NavigateStartSessionCommand = new NavigateCommand<SessionViewModel>(navigationStore, () => new SessionViewModel(navigationStore));
 
-            _isPanelVisible = false;
         }
-
-
     }
 }

@@ -45,7 +45,7 @@
                     Background="Transparent"
                     Foreground="#D90429"
                     BorderThickness="0"
-                    Content="&#x2718;"
+                    Content="&#x2715;"
                     HorizontalAlignment="Right"
                     Margin="0 -30 15 0" 
                     Click="CloseButton_Click">

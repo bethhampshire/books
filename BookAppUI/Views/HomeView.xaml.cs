@@ -68,9 +68,16 @@ namespace BookAppUI.Views
             WBBAuthToken.Text = authTokens.weBuyBooks_token;
         }
 
-        private void SaveAuthTokens()
+        private void SaveAuth_Click(object sender, RoutedEventArgs e)
         {
+            authTokens.weBuyBooks_token = WBBAuthToken.Text;
+            authTokens.ziffit_token = ZFAuthToken.Text;
 
+            string json = JsonConvert.SerializeObject(authTokens);
+            File.WriteAllText("../../Tokens/AuthTokens.json", json);
+
+            Panel.Visibility = Visibility.Collapsed;
+            Overlay.Visibility = Visibility.Collapsed;
         }
     }
 }

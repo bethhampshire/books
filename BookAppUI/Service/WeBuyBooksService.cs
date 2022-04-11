@@ -11,7 +11,7 @@ namespace BookAppUI.Service
 {
     public class WeBuyBooksService
     {
-        public async Task<WeBuyBooksModel> GetPrice(string barcode)
+        public async Task<WeBuyBooksModel> GetPrice(string barcode, string authToken)
         {
             var url = new Uri("https://api2temp.revivalbooks.co.uk/basket/item");
             var newPost = new WeBuyBooksPayloadModel()
@@ -26,7 +26,7 @@ namespace BookAppUI.Service
                 {
                     requestMessage.Headers.Add("x-revival-site", "1");
                     requestMessage.Headers.Add("x-revival-web", "1");
-                    requestMessage.Headers.Add("authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6IjFkYjM0YWY1NzE3NmEyYWU4ZDVmODUxYWFhZTc2NDQwNDZiMDgzMGMiLCJqdGkiOiIxZGIzNGFmNTcxNzZhMmFlOGQ1Zjg1MWFhYWU3NjQ0MDQ2YjA4MzBjIiwiaXNzIjoiIiwiYXVkIjoiMSIsInN1YiI6bnVsbCwiZXhwIjoxNjQ5NjM5Nzg1LCJpYXQiOjE2NDk2MTgxODUsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJzY29wZSI6IkJBU0tFVF82MjUzMmNmNmNjYzJkMC4wMjAwMzM0NCJ9.GwCADVHxdpJDlj5axSz5ITZ-97YqSyg3kaAKEZz3aaURy0O6ot3nah3FQ-ewp2TGlOMDILGKTtto5bY6EqlvFxqb-u1EUDqoixTY9-G8bgKSltpjsuhzLiX9pHG07VfNesjazh1NZ4bB1pPUYgXdzlrjp2BF9jsb9p9kNycGDHBDgFJdPTSymSIPZoXbKGN73yxnBlRWkZvCqC7norARIURplrKw9sX4tFeZtpOY4iYdQga9NqT2V-CWAe4Cj88hvsc5i-gILFQujJkLfi-PNwJtE4MqPL6ilLOo9UBTjqWveNzOH58PD-pikN0p619b-9I-WfV100IE2IzY-5eSFQ");
+                    requestMessage.Headers.Add("authorization", authToken);
 
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);

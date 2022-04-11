@@ -175,7 +175,8 @@
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
                     Margin="0 240 10 0"
-                    Width="60">Save</Button>
+                    Width="60"
+                    Click="SaveAuth_Click">Save</Button>
             </StackPanel>
         </Border>
         <Border Style="{StaticResource Overlay}"

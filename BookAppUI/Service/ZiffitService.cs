@@ -11,7 +11,7 @@ namespace BookAppUI.Service
 {
     public class ZiffitService
     {
-        public async Task<ZiffitModel> GetPrice(string barcode)
+        public async Task<ZiffitModel> GetPrice(string barcode, string authToken)
         {
             var url = new Uri("https://ziffit-recommerce-gateway-eu.ziffit.com/scan");
             var newPost = new Post()
@@ -27,7 +27,7 @@ namespace BookAppUI.Service
                 {
                     requestMessage.Headers.Add("x-region-id", "GB");
                     requestMessage.Headers.Add("accept-language", "en-GB");
-                    requestMessage.Headers.Add("authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ2aXNpdG9ySWQiOiIwMUZZS1c0TTczRUtHWkNHME5ZWkY5QzgzOCIsImN1c3RvbWVySWQiOiIiLCJiYXNrZXRJZCI6IjAxRllLVzRNNzZKQTZRNFRBMlc0NzhZSlA2IiwibG9jYWxlIjoiZW5fR0IiLCJhdXRob3JpdGllcyI6IlJPTEVfQU5PTllNT1VTLFJPTEVfR1VFU1QiLCJleHAiOjE2NTIyMDUyMzJ9.0Uk8cM7PRL6bvTLLrO3dKscQjdskKVDEW8RdvxmVfB4NZFfzjqPBf2U_WlQcqUExHsUpOERFLr67RFNFXiDIyw");
+                    requestMessage.Headers.Add("authorization", authToken);
 
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);

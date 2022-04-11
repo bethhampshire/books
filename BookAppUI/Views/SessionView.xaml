@@ -237,23 +237,21 @@
             </StackPanel>
             <StackPanel
                 Grid.Column="1"
-                Grid.RowSpan="4">
-                <Border Height="540"
-                        Background="#EDF2F4"
-                        Margin="0 15 15 15"
-                        CornerRadius="15">
-                    <Border BorderBrush="#14213D"
-                            BorderThickness="1"
-                            Width="240"
-                            Height="450"
-                            Margin="0 -45 0 0"
-                            CornerRadius="5">
-                        <TextBlock Foreground="#14213D"
-                                   FontSize="15"
-                                   Name="ActivityLogView">
-                        </TextBlock>
-                    </Border>
-                </Border>
+                Grid.RowSpan="4"
+                Background="#EDF2F4">
+                <TextBlock
+                    Margin="15 15 15 15"
+                    Foreground="#14213D"
+                    FontSize="20"
+                    TextDecorations="Underline"
+                    HorizontalAlignment="Center">
+                    EVENT LOG
+                </TextBlock>
+                <TextBlock Foreground="#14213D"
+                            FontSize="15"
+                            Name="ActivityLogView"
+                           Margin="15 0 15 15">
+                </TextBlock>
             </StackPanel>
             <Button Style="{StaticResource BasicButton}"
             Grid.Row="3"
