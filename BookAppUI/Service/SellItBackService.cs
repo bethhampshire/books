@@ -22,8 +22,28 @@ namespace BookAppUI.Service
             resp = resp.TrimStart('\"');
             resp = resp.TrimEnd('\"');
             resp = resp.Replace("\\", "");
-            // JsonConvert.DeserializeObject<List<Contributor>>(resp);
-            SellItBackModel priceModel = JsonConvert.DeserializeObject<SellItBackModel>(resp);
+            SellItBackModel priceModel = new SellItBackModel();
+            try
+            {
+                if (resp.Contains("Accepted\":1"))
+                {
+                    priceModel = JsonConvert.DeserializeObject<SellItBackModel>(resp);
+                    priceModel.Status = StatusEnum.ItemAccepted;
+                }
+                else if (resp.Contains("Sorry, we are not currently offering anything for this item"))
+                {
+                    priceModel.Status = StatusEnum.ItemNotAccepted;
+                }
+                else
+                {
+                    priceModel.Status = StatusEnum.ItemNotFound;
+                }
+            }
+            catch
+            {
+                priceModel.Status = StatusEnum.ItemNotFound;
+            }
+            
 
             return priceModel;
         }

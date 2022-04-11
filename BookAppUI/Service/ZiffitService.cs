@@ -32,16 +32,33 @@ namespace BookAppUI.Service
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);
                     var resp = await foo.Content.ReadAsStringAsync();
-                    ZiffitModel priceModel = JsonConvert.DeserializeObject<ZiffitModel>(resp);
+                    ZiffitModel priceModel = new ZiffitModel();
 
-                    if (priceModel.Value.RejectionCode != null && priceModel.Value.RejectionCode.Contains("TOO_MANY_DUPLICATES"))
+                    priceModel = JsonConvert.DeserializeObject<ZiffitModel>(resp);
+
+                    try
                     {
-                        priceModel.Status = StatusEnum.DuplicateItem;
+                        if (priceModel.Value.RejectionCode != null)
+                        {
+                            if (priceModel.Value.RejectionCode.Contains("TOO_MANY_DUPLICATES"))
+                            {
+                                priceModel.Status = StatusEnum.DuplicateItem;
+                            }
+                        }
+                        else if (!priceModel.Success)
+                        {
+                            priceModel.Status = StatusEnum.ItemNotFound;
+                        }
+                        else if (resp.Contains("accepted\":true") && priceModel.Success)
+                        {
+                            priceModel.Status = StatusEnum.ItemAccepted;
+                        }
                     }
-                    else if (!priceModel.Success)
+                    catch
                     {
                         priceModel.Status = StatusEnum.ItemNotFound;
                     }
+
                     return priceModel;
                 };
             }

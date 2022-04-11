@@ -18,12 +18,6 @@ namespace BookAppUI.Service
             using(HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                //HttpResponseMessage response = client.GetAsync("https://www.musicmagpie.co.uk/Umbraco/Surface/MediaSearch/SearchItemByBarcode?barcode=9780099448822").Result;
-                //if (response == null)
-                //{
-                //    var x = 0;
-                //}
 
                 client.BaseAddress = new Uri("https://www.musicmagpie.co.uk/");
                 client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
@@ -35,16 +29,7 @@ namespace BookAppUI.Service
                 response.EnsureSuccessStatusCode();
                 var resp = await response.Content.ReadAsStringAsync();
 
-                //List<Contributor> contributors = JsonConvert.DeserializeObject<List<Contributor>>(resp);
-                //contributors.ForEach(Console.WriteLine);
-
-                //record Contributor(string Login, short Contributions);
-
-
-
-
                 string jsonResponse = await response.Content.ReadAsStringAsync();
-                var y = 'd';
                 PriceModel priceModel = JsonConvert.DeserializeObject<PriceModel>(jsonResponse);
                 return priceModel;
             }

@@ -23,19 +23,26 @@ namespace BookAppUI.Service
             resp = resp.TrimEnd('\"');
             resp = resp.Replace("\\", "");
             resp = resp.Replace("\"\"", "");
-            PriceModel priceModel = new PriceModel();
-            if (resp.Contains("Unfortunately we don't seem to recognise this barcode. Please either try again or enter another title."))
+           PriceModel priceModel = new PriceModel();
+            try
+            {
+                if (resp.Contains("Unfortunately we don't seem to recognise this barcode. Please either try again or enter another title."))
+                {
+                    priceModel.Status = StatusEnum.ItemNotFound;
+                }
+                else if (resp.Contains("Sorry, we don’t accept multiple copies of the same item. Please enter a different item."))
+                {
+                    priceModel.Status = StatusEnum.DuplicateItem;
+                }
+                else if (resp.Contains("\"status\":0"))
+                {
+                    priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
+                    priceModel.Status = StatusEnum.ItemAccepted;
+                }
+            }
+            catch
             {
                 priceModel.Status = StatusEnum.ItemNotFound;
-            }
-            else if (resp.Contains("Sorry, we don’t accept multiple copies of the same item. Please enter a different item."))
-            {
-                priceModel.Status = StatusEnum.DuplicateItem;
-            }
-            else if (resp.Contains("\"status\":0"))
-            {
-                priceModel = JsonConvert.DeserializeObject<PriceModel>(resp);
-                priceModel.Status = StatusEnum.ItemAccepted;
             }
 
             return priceModel;
