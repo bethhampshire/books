@@ -86,6 +86,10 @@ namespace BookAppUI.Views
             ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token);
             sellItBackPrice = await _sellItBackService.GetPrice(barcode);
             weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token);
+            //if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
+            //{
+            //    await _weBuyBooksService.Delete(string weBuyBooksPrice.Item.Id);
+            //}
         }
 
         public string ReadBarcode(RoutedEventArgs e)

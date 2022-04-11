@@ -62,7 +62,7 @@ namespace BookAppUI.Service
             }
         }
 
-        //public async Task<WeBuyBooksModel> Delete(string barcode)
+        //public async Task<WeBuyBooksModel> Delete(int id)
         //{
 
         //    var url = new Uri("https://api2temp.revivalbooks.co.uk/basket/item/");
