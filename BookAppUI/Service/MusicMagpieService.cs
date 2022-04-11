@@ -23,7 +23,7 @@ namespace BookAppUI.Service
             resp = resp.TrimEnd('\"');
             resp = resp.Replace("\\", "");
             resp = resp.Replace("\"\"", "");
-           PriceModel priceModel = new PriceModel();
+            PriceModel priceModel = new PriceModel();
             try
             {
                 if (resp.Contains("Unfortunately we don't seem to recognise this barcode. Please either try again or enter another title."))
