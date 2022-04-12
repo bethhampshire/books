@@ -55,8 +55,6 @@ namespace BookAppUI.Service
                     {
                         priceModel.Status = StatusEnum.ItemNotAccepted;
                     }
-                    
-
                     return priceModel;
                 };
             }
