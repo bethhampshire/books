@@ -253,7 +253,7 @@
                             FontSize="15"
                             Name="ActivityLogView"
                            Margin="15 0 15 15"
-                               >
+                              Width="280" >
                     </TextBlock>
                 </ScrollViewer>
             </StackPanel>
@@ -269,7 +269,7 @@
             Grid.Row="3"
             Grid.Column="1"
             Content="End session"
-                    Command="{Binding NavigateEndSessionCommand}"
+                    Command="{Binding NavigateHomeCommand}"
                     Margin="15 0 15 20"
             Width="130">
             </Button>

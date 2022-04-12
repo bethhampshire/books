@@ -31,8 +31,8 @@ namespace BookAppUI.Views
             _musicMagpieService = new MusicMagpieService();
             _ziffitService = new ZiffitService();
             _weBuyBooksService = new WeBuyBooksService();
-            AddToActivityLog("Hello Nigel");
-            AddToActivityLog("Your session has started");
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Hello Nigel");
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Your session has started");
             PrintActivityLog(ActivityLog);
             authTokens = new AuthTokenModel();
             GetAuthTokens();
@@ -82,10 +82,18 @@ namespace BookAppUI.Views
         // this returns the models
         private async Task GetPrices(string barcode)
         {
-            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit searching...");
+            PrintActivityLog(ActivityLog);
             ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token);
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back searching...");
+            PrintActivityLog(ActivityLog);
             sellItBackPrice = await _sellItBackService.GetPrice(barcode);
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books searching...");
+            PrintActivityLog(ActivityLog);
             weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token);
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie searching...");
+            PrintActivityLog(ActivityLog);
+            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
             if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
             {
                 await _weBuyBooksService.Delete(weBuyBooksPrice.Item.Id, authTokens.weBuyBooks_token);
@@ -95,7 +103,7 @@ namespace BookAppUI.Views
         public string ReadBarcode(RoutedEventArgs e)
         {
             barcode = BarcodeInput.Text;
-            AddToActivityLog("Searched " + barcode);
+            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Searched " + barcode);
             PrintActivityLog(ActivityLog);
             return barcode;
         }
@@ -106,6 +114,7 @@ namespace BookAppUI.Views
             BarcodeValue.Text = BarcodeInput.Text;
             string barcode = ReadBarcode(e);
             BarcodeInput.Text = "";
+            BookTitle.Text = "Searching...";
             await GetPrices(barcode);
             AssignValues();
         }
@@ -136,19 +145,23 @@ namespace BookAppUI.Views
                 MMPrice.Text = " - - ";
                 if (musicMagpiePrice.Status == StatusEnum.DuplicateItem)
                 {
-                    AddToActivityLog("Music magpie: No duplicate item");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie No duplicate item");
                 }
                 else if (musicMagpiePrice.Status == StatusEnum.Unauthenticated)
                 {
-                    AddToActivityLog("Music magpie: Update auth token");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie: Update auth token");
                 }
                 else if (musicMagpiePrice.Status == StatusEnum.ItemNotFound)
                 {
-                    AddToActivityLog("Music magpie: Item not found");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie: Item not found");
                 }
                 else if(musicMagpiePrice.Status == StatusEnum.InvalidBarcode)
                 {
-                    AddToActivityLog("Music magpie: This barcode is invalid");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie: This barcode is invalid");
+                }
+                else if(musicMagpiePrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie: Item not accepted");
                 }
             }
 
@@ -162,19 +175,23 @@ namespace BookAppUI.Views
                 SIBPrice.Text = " - - ";
                 if (sellItBackPrice.Status == StatusEnum.DuplicateItem)
                 {
-                    AddToActivityLog("Sell it back: No duplicate item");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back: No duplicate item");
                 }
                 else if (sellItBackPrice.Status == StatusEnum.Unauthenticated)
                 {
-                    AddToActivityLog("Sell it back: Update auth token");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back: Update auth token");
                 }
                 else if (sellItBackPrice.Status == StatusEnum.ItemNotFound)
                 {
-                    AddToActivityLog("Sell it back: Item not found");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back: Item not found");
                 }
                 else if (sellItBackPrice.Status == StatusEnum.InvalidBarcode)
                 {
-                    AddToActivityLog("Sell it back: This barcode is invalid");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back: This barcode is invalid");
+                }
+                else if (sellItBackPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back: Item not accepted");
                 }
             }
 
@@ -192,19 +209,23 @@ namespace BookAppUI.Views
                 ZFPrice.Text = " - - ";
                 if (ziffitPrice.Status == StatusEnum.DuplicateItem)
                 {
-                    AddToActivityLog("Ziffit: No duplicate item");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit: No duplicate item");
                 }
                 else if (ziffitPrice.Status == StatusEnum.Unauthenticated)
                 {
-                    AddToActivityLog("Ziffit: Update auth token");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit: Update auth token");
                 }
                 else if (ziffitPrice.Status == StatusEnum.ItemNotFound)
                 {
-                    AddToActivityLog("Ziffit: Item not found");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit: Item not found");
                 }
                 else if (ziffitPrice.Status == StatusEnum.InvalidBarcode)
                 {
-                    AddToActivityLog("Ziffit: This barcode is invalid");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit: This barcode is invalid");
+                }
+                else if (ziffitPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit: Item not accepted");
                 }
             }
 
@@ -222,19 +243,23 @@ namespace BookAppUI.Views
                 WeBuyBooksPrice.Text = " - -";
                 if (weBuyBooksPrice.Status == StatusEnum.DuplicateItem)
                 {
-                    AddToActivityLog("We buy books: No duplicate item");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books: No duplicate item");
                 }
                 else if (weBuyBooksPrice.Status == StatusEnum.Unauthenticated)
                 {
-                    AddToActivityLog("We buy books: Update auth token");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books: Update auth token");
                 }
                 else if (weBuyBooksPrice.Status == StatusEnum.ItemNotFound)
                 {
-                    AddToActivityLog("We buy books: Item not found");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books: Item not found");
                 }
                 else if (weBuyBooksPrice.Status == StatusEnum.InvalidBarcode)
                 {
-                    AddToActivityLog("We buy books: This barcode is invalid");
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books: This barcode is invalid");
+                }
+                else if (weBuyBooksPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books: Item not accepted");
                 }
             }
 
