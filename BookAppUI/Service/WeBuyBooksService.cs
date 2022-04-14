@@ -13,11 +13,19 @@ namespace BookAppUI.Service
     {
         public async Task<WeBuyBooksModel> GetPrice(string barcode, string authToken)
         {
+            if (authToken == "" || authToken.Length == 0 || !authToken.Contains("Bearer"))
+            {
+                WeBuyBooksModel priceModel = new WeBuyBooksModel();
+                priceModel.Status = StatusEnum.Unauthenticated;
+                return priceModel;
+            }
+
             var url = new Uri("https://api2temp.revivalbooks.co.uk/basket/item");
             var newPost = new WeBuyBooksPayloadModel()
             {
                 barcode = barcode,
             };
+
             var newPostJson = JsonConvert.SerializeObject(newPost);
             var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
             using (var httpClient = new HttpClient())

@@ -13,6 +13,13 @@ namespace BookAppUI.Service
     {
         public async Task<ZiffitModel> GetPrice(string barcode, string authToken)
         {
+            if (authToken == "" || authToken.Length == 0 || !authToken.Contains("Bearer"))
+            {
+                ZiffitModel priceModel = new ZiffitModel();
+                priceModel.Status = StatusEnum.Unauthenticated;
+                return priceModel;
+            }
+
             var url = new Uri("https://ziffit-recommerce-gateway-eu.ziffit.com/scan");
             var newPost = new Post()
             {
