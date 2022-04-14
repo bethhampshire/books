@@ -26,7 +26,6 @@ namespace BookAppUI.ViewModels
         public SessionViewModel(NavigationStore navigationStore)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
-            NavigateEndSessionCommand = new NavigateCommand<EndSessionViewModel>(navigationStore, () => new EndSessionViewModel(navigationStore));
         }
     }
 }

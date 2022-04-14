@@ -66,9 +66,6 @@
                     <DataTemplate DataType="{x:Type viewmodels:SessionViewModel}">
                         <views:SessionView/>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodels:EndSessionViewModel}">
-                        <views:EndSession/>
-                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Border>

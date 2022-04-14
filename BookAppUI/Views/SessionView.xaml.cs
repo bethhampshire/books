@@ -154,6 +154,10 @@ namespace BookAppUI.Views
                 {
                     AddToActivityLog("Music magpie: This barcode is invalid");
                 }
+                else if (musicMagpiePrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("Music magpie: Item not accepted");
+                }
             }
 
             if (sellItBackPrice.Status == StatusEnum.ItemAccepted)
@@ -179,6 +183,10 @@ namespace BookAppUI.Views
                 else if (sellItBackPrice.Status == StatusEnum.InvalidBarcode)
                 {
                     AddToActivityLog("Sell it back: This barcode is invalid");
+                }
+                else if (sellItBackPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("Sell it back: Item not accepted");
                 }
             }
 
@@ -210,6 +218,10 @@ namespace BookAppUI.Views
                 {
                     AddToActivityLog("Ziffit: This barcode is invalid");
                 }
+                else if (ziffitPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("Ziffit: Item not accepted");
+                }
             }
 
             if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
@@ -239,6 +251,10 @@ namespace BookAppUI.Views
                 else if (weBuyBooksPrice.Status == StatusEnum.InvalidBarcode)
                 {
                     AddToActivityLog("We buy books: This barcode is invalid");
+                }
+                else if (weBuyBooksPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("We buy books: Item not accepted");
                 }
             }
 
