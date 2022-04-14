@@ -72,6 +72,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#14213D"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -114,6 +115,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#4D9078"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

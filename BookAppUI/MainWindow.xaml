@@ -39,6 +39,7 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="textColour" Property="TextBlock.FontWeight" Value="ExtraBold"></Setter>
                                     <Setter TargetName="textColour" Property="TextBlock.FontSize" Value="26"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
                                     <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#14213D"></Setter>
