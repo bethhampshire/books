@@ -66,12 +66,7 @@ namespace BookAppUI.Service
         {
             string url = "";
             url = $"https://api2temp.revivalbooks.co.uk/basket/item/{ id }";
-            //var newPost = new WeBuyBooksPayloadModel()
-            //{
-            //    barcode = barcode,
-            //};
-            //var newPostJson = JsonConvert.SerializeObject(newPost);
-            //var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+
             using (var httpClient = new HttpClient())
             {
                 using (var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url))
@@ -80,7 +75,6 @@ namespace BookAppUI.Service
                     requestMessage.Headers.Add("x-revival-web", "1");
                     requestMessage.Headers.Add("authorization", authToken);
 
-                    //requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var foo = await httpClient.SendAsync(requestMessage);
                     var resp = await foo.Content.ReadAsStringAsync();
                 };

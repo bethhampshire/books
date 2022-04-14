@@ -90,6 +90,10 @@ namespace BookAppUI.Views
             {
                 await _weBuyBooksService.Delete(weBuyBooksPrice.Item.Id, authTokens.weBuyBooks_token);
             }
+            if (ziffitPrice.Status == StatusEnum.ItemAccepted)
+            {
+                await _ziffitService.Delete(ziffitPrice.Value.CartItemId, authTokens.ziffit_token);
+            }
         }
 
         public string ReadBarcode(RoutedEventArgs e)

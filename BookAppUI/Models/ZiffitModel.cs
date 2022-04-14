@@ -13,6 +13,8 @@ namespace BookAppUI.Models
         public string Title { get; set; }
 
         public string RejectionCode { get; set; }
+
+        public string CartItemId { get; set; }
     }
 
     public class ZiffitModel
