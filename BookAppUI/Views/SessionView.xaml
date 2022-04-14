@@ -261,6 +261,7 @@
                 </TextBox>
                 <Button Style="{StaticResource SearchButton}"
                         Click="Search_Button_Click"
+                        Name="SearchButton"
                         >
                 </Button>
             </StackPanel>
@@ -277,12 +278,14 @@
                     EVENT LOG
                 </TextBlock>
                 <ScrollViewer Visibility="Visible"
-                              MaxHeight="420">
+                              Height="440"
+                              >
                     <TextBlock Foreground="#14213D"
-                            FontSize="15"
+                            FontSize="14"
                             Name="ActivityLogView"
                            Margin="15 0 15 15"
-                              Width="280" >
+                              Width="280" 
+                               TextWrapping="Wrap">
                     </TextBlock>
                 </ScrollViewer>
             </StackPanel>

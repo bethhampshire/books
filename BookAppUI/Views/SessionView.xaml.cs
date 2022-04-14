@@ -31,11 +31,16 @@ namespace BookAppUI.Views
             _musicMagpieService = new MusicMagpieService();
             _ziffitService = new ZiffitService();
             _weBuyBooksService = new WeBuyBooksService();
+            authTokens = new AuthTokenModel();
+
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Hello Nigel");
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Your session has started");
             PrintActivityLog(ActivityLog);
-            authTokens = new AuthTokenModel();
+
             GetAuthTokens();
+
+            BarcodeInput.Focus();
+           
         }
 
         private readonly SellItBackService _sellItBackService;
@@ -121,6 +126,7 @@ namespace BookAppUI.Views
             BookTitle.Text = "Searching...";
             await GetPrices(barcode);
             AssignValues();
+            BarcodeInput.Focus();
         }
 
         public void GetAuthTokens()
