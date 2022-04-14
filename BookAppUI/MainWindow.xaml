@@ -16,6 +16,39 @@
             <Style x:Key="BasicButton" TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="#FFC145" />
             </Style>
+            <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="Foreground" Value="#D90429"></Setter>
+                <Setter Property="Height" Value="28"></Setter>
+                <Setter Property="Width" Value="28"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <TextBlock 
+                                Name="textColour"
+                                Foreground="#D90429"
+                                    FontSize="25"
+                                    FontWeight="Medium"
+                                       >
+                                &#x2715;
+                                </TextBlock>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="textColour" Property="TextBlock.FontWeight" Value="ExtraBold"></Setter>
+                                    <Setter TargetName="textColour" Property="TextBlock.FontSize" Value="26"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#14213D"></Setter>
+                                    <Setter TargetName="textColour" Property="TextBlock.FontWeight" Value="Medium"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -39,15 +72,9 @@
                        FontWeight="DemiBold">
                     Nigel's books
                     </TextBlock>
-                    <Button
-                    Width="18"
-                    FontSize="20"
-                    Background="Transparent"
-                    Foreground="#D90429"
-                    BorderThickness="0"
-                    Content="&#x2715;"
-                    HorizontalAlignment="Right"
-                    Margin="0 -30 15 0" 
+                    <Button Style="{StaticResource CloseButton}"
+                            HorizontalAlignment="Right"
+                            Margin="0 -33 0 0" 
                     Click="CloseButton_Click">
                     </Button>
                 </StackPanel>

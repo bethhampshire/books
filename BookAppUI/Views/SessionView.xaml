@@ -50,6 +50,43 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="SearchButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="#2B2D42"></Setter>
+            <Setter Property="Height" Value="75"></Setter>
+            <Setter Property="Width" Value="75"></Setter>
+            <Setter Property="FontSize" Value="50"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="10 0 0 0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <TextBlock 
+                                Name="textColour"
+                                Foreground="#2B2D42"
+                                       >
+                                &#128270;
+                            </TextBlock>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#2B2D42"></Setter>
+                                <Setter Property="Margin" Value="12 2 0 0"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#EDF2F4"></Setter>
+                                <Setter Property="Margin" Value="12 2 0 0"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#EDF2F4"></Setter>
+                                <Setter Property="Margin" Value="12 2 0 0"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="BasicButton_Invert" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="#4D9078"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -222,17 +259,9 @@
                         Background="#EDF2F4"
                         Foreground="#14213D">
                 </TextBox>
-                <Button Margin="15"
-                        Height="60"
-                        Background="Transparent"
-                        Foreground="#2B2D42"
-                        BorderThickness="0"
-                        FontSize="50"
-                        Padding="0 -5 0 0"
-                        FontWeight="Medium"
+                <Button Style="{StaticResource SearchButton}"
                         Click="Search_Button_Click"
                         >
-                    &#128270;
                 </Button>
             </StackPanel>
             <StackPanel
