@@ -31,11 +31,16 @@ namespace BookAppUI.Views
             _musicMagpieService = new MusicMagpieService();
             _ziffitService = new ZiffitService();
             _weBuyBooksService = new WeBuyBooksService();
+            authTokens = new AuthTokenModel();
+
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Hello Nigel");
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Your session has started");
             PrintActivityLog(ActivityLog);
-            authTokens = new AuthTokenModel();
+
             GetAuthTokens();
+
+            BarcodeInput.Focus();
+           
         }
 
         private readonly SellItBackService _sellItBackService;
@@ -107,20 +112,30 @@ namespace BookAppUI.Views
         public string ReadBarcode(RoutedEventArgs e)
         {
             barcode = BarcodeInput.Text;
-            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Searched " + barcode);
-            PrintActivityLog(ActivityLog);
             return barcode;
         }
 
         private async void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-
             BarcodeValue.Text = BarcodeInput.Text;
             string barcode = ReadBarcode(e);
-            BarcodeInput.Text = "";
-            BookTitle.Text = "Searching...";
-            await GetPrices(barcode);
-            AssignValues();
+
+            if (barcode.Length > 0)
+            {
+                AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Searched " + barcode);
+                BarcodeInput.Text = "";
+                BookTitle.Text = "Searching...";
+                await GetPrices(barcode);
+                AssignValues();
+                BarcodeInput.Focus();
+            }
+
+            else if (barcode.Length == 0)
+            {
+                BookTitle.Text = "";
+                AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Enter barcode to search ");
+            }
+            PrintActivityLog(ActivityLog);
         }
 
         public void GetAuthTokens()
