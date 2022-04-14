@@ -71,5 +71,24 @@ namespace BookAppUI.Service
                 };
             }
         }
+
+        public async Task Delete(string id, string authToken)
+        {
+            string url = "";
+            url = $"https://ziffit-recommerce-gateway-eu.ziffit.com/basket/items/{ id }";
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url))
+                {
+                    requestMessage.Headers.Add("x-region-id", "GB");
+                    requestMessage.Headers.Add("accept-language", "en-GB");
+                    requestMessage.Headers.Add("authorization", authToken);
+
+                    var foo = await httpClient.SendAsync(requestMessage);
+                    var resp = await foo.Content.ReadAsStringAsync();
+                };
+            }
+        }
     }
 }
