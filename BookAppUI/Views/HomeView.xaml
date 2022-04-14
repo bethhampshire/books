@@ -132,15 +132,10 @@
         </Style>
         <Style x:Key="TitlePanel" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#EDF2F4"></Setter>
-            <Setter Property="Margin" Value="10 5 0 10"></Setter>
+            <Setter Property="Margin" Value="10 40 0 30"></Setter>
             <Setter Property="FontSize" Value="24"></Setter>
         </Style>
-        <Style x:Key="DescriptionPanel" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="#EDF2F4"></Setter>
-            <Setter Property="Margin" Value="10 5 10 10"></Setter>
-            <Setter Property="TextWrapping" Value="Wrap"></Setter>
-            <Setter Property="FontSize" Value="18"></Setter>
-        </Style>
+
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -162,7 +157,6 @@
                         Click="ClosePanel_Click"></Button>
                 <StackPanel>
                     <TextBlock Style="{StaticResource TitlePanel}">Set auth tokens</TextBlock>
-                    <TextBlock Style="{StaticResource DescriptionPanel}">Follow the steps provided to update the authorisation tokens</TextBlock>
                     <TextBlock Style="{StaticResource AuthName}">Ziffit</TextBlock>
                     <TextBox Style="{StaticResource AuthTextBox}"
                              Name="ZFAuthToken"></TextBox>

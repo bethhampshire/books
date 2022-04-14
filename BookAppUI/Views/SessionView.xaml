@@ -284,7 +284,7 @@
                             FontSize="14"
                             Name="ActivityLogView"
                            Margin="15 0 15 15"
-                              Width="280" 
+                              Width="270" 
                                TextWrapping="Wrap">
                     </TextBlock>
                 </ScrollViewer>

@@ -112,21 +112,30 @@ namespace BookAppUI.Views
         public string ReadBarcode(RoutedEventArgs e)
         {
             barcode = BarcodeInput.Text;
-            AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Searched " + barcode);
-            PrintActivityLog(ActivityLog);
             return barcode;
         }
 
         private async void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-
             BarcodeValue.Text = BarcodeInput.Text;
             string barcode = ReadBarcode(e);
-            BarcodeInput.Text = "";
-            BookTitle.Text = "Searching...";
-            await GetPrices(barcode);
-            AssignValues();
-            BarcodeInput.Focus();
+
+            if (barcode.Length > 0)
+            {
+                AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Searched " + barcode);
+                BarcodeInput.Text = "";
+                BookTitle.Text = "Searching...";
+                await GetPrices(barcode);
+                AssignValues();
+                BarcodeInput.Focus();
+            }
+
+            else if (barcode.Length == 0)
+            {
+                BookTitle.Text = "";
+                AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Enter barcode to search ");
+            }
+            PrintActivityLog(ActivityLog);
         }
 
         public void GetAuthTokens()
