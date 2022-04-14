@@ -79,10 +79,6 @@
                                 <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#EDF2F4"></Setter>
                                 <Setter Property="Margin" Value="12 2 0 0"></Setter>
                             </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="textColour" Property="TextBlock.Foreground" Value="#EDF2F4"></Setter>
-                                <Setter Property="Margin" Value="12 2 0 0"></Setter>
-                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
