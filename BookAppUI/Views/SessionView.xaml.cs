@@ -167,6 +167,10 @@ namespace BookAppUI.Views
                 {
                     AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie: Item not accepted");
                 }
+                else if (musicMagpiePrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("Music magpie: Item not accepted");
+                }
             }
 
             if (sellItBackPrice.Status == StatusEnum.ItemAccepted)
@@ -196,6 +200,10 @@ namespace BookAppUI.Views
                 else if (sellItBackPrice.Status == StatusEnum.ItemNotAccepted)
                 {
                     AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back: Item not accepted");
+                }
+                else if (sellItBackPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("Sell it back: Item not accepted");
                 }
             }
 
@@ -231,6 +239,10 @@ namespace BookAppUI.Views
                 {
                     AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit: Item not accepted");
                 }
+                else if (ziffitPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("Ziffit: Item not accepted");
+                }
             }
 
             if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
@@ -264,6 +276,10 @@ namespace BookAppUI.Views
                 else if (weBuyBooksPrice.Status == StatusEnum.ItemNotAccepted)
                 {
                     AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books: Item not accepted");
+                }
+                else if (weBuyBooksPrice.Status == StatusEnum.ItemNotAccepted)
+                {
+                    AddToActivityLog("We buy books: Item not accepted");
                 }
             }
 
