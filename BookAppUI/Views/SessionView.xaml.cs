@@ -133,6 +133,11 @@ namespace BookAppUI.Views
                 }
                 catch
                 {
+                    BookTitle.Text = "Something went wrong";
+                    MMPrice.Text = " - - ";
+                    ZFPrice.Text = " - - ";
+                    WeBuyBooksPrice.Text = " - -";
+                    SIBPrice.Text = " - - ";
                     AddToActivityLog(DateTime.Now.ToShortTimeString() + " Something went wrong");
                 }
                 BarcodeInput.Focus();
