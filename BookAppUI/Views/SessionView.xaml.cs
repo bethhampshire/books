@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,7 @@ namespace BookAppUI.Views
     /// </summary>
     public partial class SessionView : UserControl
     {
+        CancellationTokenSource cts = new CancellationTokenSource();
         public SessionView()
         {
             InitializeComponent();
@@ -54,7 +56,6 @@ namespace BookAppUI.Views
         public ZiffitModel ziffitPrice { get; set; }
         public SellItBackModel sellItBackPrice { get; set; }
         public WeBuyBooksModel weBuyBooksPrice { get; set; }
-        // public WeBuyBooksServicecs weBuyBooksPrice { get; set; }
 
         public string title = "";
         public string barcode = "";
@@ -89,16 +90,16 @@ namespace BookAppUI.Views
         {
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit searching...");
             PrintActivityLog(ActivityLog);
-            ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token);
+            ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token, cts.Token);
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back searching...");
             PrintActivityLog(ActivityLog);
-            sellItBackPrice = await _sellItBackService.GetPrice(barcode);
+            sellItBackPrice = await _sellItBackService.GetPrice(barcode, cts.Token);
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books searching...");
             PrintActivityLog(ActivityLog);
-            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token);
+            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token, cts.Token);
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie searching...");
             PrintActivityLog(ActivityLog);
-            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
+            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode, cts.Token);
             if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
             {
                 await _weBuyBooksService.Delete(weBuyBooksPrice.Item.Id, authTokens.weBuyBooks_token);
@@ -125,8 +126,33 @@ namespace BookAppUI.Views
                 AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Searched " + barcode);
                 BarcodeInput.Text = "";
                 BookTitle.Text = "Searching...";
-                await GetPrices(barcode);
-                AssignValues();
+
+                try
+                {
+                    cts.CancelAfter(6500);
+                    await GetPrices(barcode);
+                    AssignValues();
+                }
+                catch (Exception ex)
+                {
+                    if (ex is OperationCanceledException)
+                    {
+                        BookTitle.Text = "Search timed out";
+                        AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Search timed out");
+                    }
+                    else
+                    {
+                        BookTitle.Text = "Something went wrong";
+                        AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Something went wrong");
+                    }
+                }
+                finally
+                {
+                    cts.Dispose();
+                }
+
+    
+
                 BarcodeInput.Focus();
             }
 

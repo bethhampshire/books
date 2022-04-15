@@ -5,18 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BookAppUI.Service
 {
     public class MusicMagpieService
     {
-        public async Task<PriceModel> GetPrice(string barcode)
+        public async Task<PriceModel> GetPrice(string barcode, CancellationToken ct)
         {
             string url = "";
             url = $"https://www.musicmagpie.co.uk/Umbraco/Surface/MediaSearch/SearchItemByBarcode?barcode={ barcode }";
 
-            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url);
+            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url, ct);
             response.EnsureSuccessStatusCode();
             var resp = await response.Content.ReadAsStringAsync();
             resp = resp.TrimStart('\"');

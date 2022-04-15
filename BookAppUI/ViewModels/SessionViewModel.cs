@@ -13,13 +13,6 @@ namespace BookAppUI.ViewModels
 {
     public class SessionViewModel: ViewModelBase
     {
-        public string StartSessionMessage => "Session Started you go Beth";
-        public string barcode = "9780099448822";
-
-        public string PriceMM => "£0.20";
-        public string PriceZF => "£0.50";
-        public string PriceSIB => "£0.30";
-
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateEndSessionCommand { get; }
 

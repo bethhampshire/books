@@ -270,7 +270,6 @@
                     Margin="15 15 15 15"
                     Foreground="#14213D"
                     FontSize="20"
-                    TextDecorations="Underline"
                     HorizontalAlignment="Center">
                     EVENT LOG
                 </TextBlock>
