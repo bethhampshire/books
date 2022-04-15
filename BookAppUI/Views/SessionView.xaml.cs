@@ -25,7 +25,6 @@ namespace BookAppUI.Views
     /// </summary>
     public partial class SessionView : UserControl
     {
-        CancellationTokenSource cts = new CancellationTokenSource();
         public SessionView()
         {
             InitializeComponent();
@@ -90,16 +89,16 @@ namespace BookAppUI.Views
         {
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Ziffit searching...");
             PrintActivityLog(ActivityLog);
-            ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token, cts.Token);
+            ziffitPrice = await _ziffitService.GetPrice(barcode, authTokens.ziffit_token);
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Sell it back searching...");
             PrintActivityLog(ActivityLog);
-            sellItBackPrice = await _sellItBackService.GetPrice(barcode, cts.Token);
+            sellItBackPrice = await _sellItBackService.GetPrice(barcode);
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": We buy books searching...");
             PrintActivityLog(ActivityLog);
-            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token, cts.Token);
+            weBuyBooksPrice = await _weBuyBooksService.GetPrice(barcode, authTokens.weBuyBooks_token);
             AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Music magpie searching...");
             PrintActivityLog(ActivityLog);
-            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode, cts.Token);
+            musicMagpiePrice = await _musicMagpieService.GetPrice(barcode);
             if (weBuyBooksPrice.Status == StatusEnum.ItemAccepted)
             {
                 await _weBuyBooksService.Delete(weBuyBooksPrice.Item.Id, authTokens.weBuyBooks_token);
@@ -129,30 +128,13 @@ namespace BookAppUI.Views
 
                 try
                 {
-                    cts.CancelAfter(6500);
                     await GetPrices(barcode);
                     AssignValues();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    if (ex is OperationCanceledException)
-                    {
-                        BookTitle.Text = "Search timed out";
-                        AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Search timed out");
-                    }
-                    else
-                    {
-                        BookTitle.Text = "Something went wrong";
-                        AddToActivityLog(DateTime.Now.ToShortTimeString() + ": Something went wrong");
-                    }
+                    AddToActivityLog(DateTime.Now.ToShortTimeString() + " Something went wrong");
                 }
-                finally
-                {
-                    cts.Dispose();
-                }
-
-    
-
                 BarcodeInput.Focus();
             }
 

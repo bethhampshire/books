@@ -12,12 +12,12 @@ namespace BookAppUI.Service
 {
     public class MusicMagpieService
     {
-        public async Task<PriceModel> GetPrice(string barcode, CancellationToken ct)
+        public async Task<PriceModel> GetPrice(string barcode)
         {
             string url = "";
             url = $"https://www.musicmagpie.co.uk/Umbraco/Surface/MediaSearch/SearchItemByBarcode?barcode={ barcode }";
 
-            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url, ct);
+            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var resp = await response.Content.ReadAsStringAsync();
             resp = resp.TrimStart('\"');

@@ -12,12 +12,12 @@ namespace BookAppUI.Service
 {
     public class SellItBackService
     {
-        public async Task<SellItBackModel> GetPrice(string barcode, CancellationToken ct)
+        public async Task<SellItBackModel> GetPrice(string barcode)
         {
             string url = "";
             url = $"https://www.sellitback.com/Sellitback.svc/SearchItem?UserID=&CartID=132922782359545213&EAN={ barcode }";
 
-            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url, ct);
+            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var resp = await response.Content.ReadAsStringAsync();
             resp = resp.TrimStart('\"');

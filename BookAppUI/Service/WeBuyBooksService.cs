@@ -12,7 +12,7 @@ namespace BookAppUI.Service
 {
     public class WeBuyBooksService
     {
-        public async Task<WeBuyBooksModel> GetPrice(string barcode, string authToken, CancellationToken ct)
+        public async Task<WeBuyBooksModel> GetPrice(string barcode, string authToken)
         {
             if (authToken == "" || authToken.Length == 0 || !authToken.Contains("Bearer"))
             {
@@ -37,7 +37,7 @@ namespace BookAppUI.Service
                     requestMessage.Headers.Add("authorization", authToken);
 
                     requestMessage.Content = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                    var foo = await httpClient.SendAsync(requestMessage, ct);
+                    var foo = await httpClient.SendAsync(requestMessage);
                     var resp = await foo.Content.ReadAsStringAsync();
                     WeBuyBooksModel priceModel = JsonConvert.DeserializeObject<WeBuyBooksModel>(resp);
                     try
